@@ -43,38 +43,48 @@ label {
 	width: 100%;
 }
 
-.inner-container {
+#login-container,
+#register-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	background-color: rgba(250, 114, 104, 0.918);
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
 		rgba(0, 0, 0, 0.22) 0px 10px 10px;
-	max-width: 600px;
+	max-width: 800px;
 	border-radius: 12px;
+	margin-bottom: 8rem;
+}
+#register-container {
+	margin-bottom: 16rem;
 }
 
+#register-container {
+	display: none;
+}
+
+h1 {
+	color: white;
+	margin-bottom: 1rem;
+	font-size: 42px;
+}
 .my-form,
-.register-container {
+.right-section {
 	width: 100%;
 	height: 100%;
-	padding: 2rem;
+	padding: 3rem;
 }
 
-.login-title {
-	display: inline-block;
+.heading {
 	border-bottom: 5px solid #001220;
-	width: 50%;
-	margin-bottom: 0.5rem;
-}
-
-.my-form {
-	display: flex;
-	flex-direction: column;
-	border-right: 2px solid #001220;
+	width: 100%;
+	margin-bottom: 1rem;
 }
 
 #username,
-#password {
+#password,
+#registerUsername,
+#registerPassword,
+#confirmPassword {
 	width: 100%;
 	margin: 0.5rem 0;
 	padding: 0.5rem;
@@ -83,7 +93,8 @@ label {
 }
 
 .submit-btn,
-.register-btn {
+.register-btn,
+.login-btn {
 	padding: 0.5rem;
 	margin: 0.5rem 0;
 	color: black;
@@ -101,8 +112,9 @@ label {
 	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
-.register-container {
+.right-section {
 	background-color: #eb5967;
 	border-top-right-radius: 12px;
 	border-bottom-right-radius: 12px;
+	border-left: 2px solid #001220;
 }
