@@ -4,14 +4,74 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Poppins:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="./css/style.css" />
-		<script src="./js//index.js"></script>
+		<script defer src="./js//index.js"></script>
 		<title>Monastery</title>
 	</head>
 	<body>
-		<h1>Monastery</h1>
-		<!-- 1. Login Form -->
-		<h2>test</h2>
-		<!-- 2. Register Form -->
+		<div class="main-container">
+			<h1>Monastery</h1>
+			<!-- Login -->
+			<div id="login-container">
+				<form class="my-form" id="login-form">
+					<h2 class="heading">Login</h2>
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username" required />
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" required />
+					<input type="submit" value="Login" class="submit-btn" />
+				</form>
+				<div class="right-section">
+					<h2 class="heading">Register</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam,
+						sunt!
+					</p>
+					<button class="register-btn">Register</button>
+				</div>
+			</div>
+			<!-- Register -->
+			<div id="register-container">
+				<form class="my-form" id="register-form">
+					<h2 class="heading">Register</h2>
+					<label for="regsiterUsername">Username</label>
+					<input
+						type="text"
+						name="registerUsername"
+						id="registerUsername"
+						required
+					/>
+					<label for="registerPassword">Password</label>
+					<input
+						type="password"
+						name="registerPassword"
+						id="registerPassword"
+						required
+					/>
+					<label for="confirmPassword">Password</label>
+					<input
+						type="password"
+						name="confirmPassword"
+						id="confirmPassword"
+						required
+					/>
+					<input type="submit" value="Register" class="submit-btn" />
+				</form>
+				<div class="right-section">
+					<h2 class="heading">Already with us?</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat
+						veritatis architecto accusantium iure repellendus.
+					</p>
+					<button class="login-btn">Login</button>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
