@@ -4,14 +4,37 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Poppins:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="./css/style.css" />
 		<script src="./js//index.js"></script>
 		<title>Monastery</title>
 	</head>
 	<body>
-		<h1>Monastery</h1>
 		<!-- 1. Login Form -->
-		<h2>test</h2>
-		<!-- 2. Register Form -->
+		<div class="main-container">
+			<div class="inner-container">
+				<form class="my-form">
+					<h2 class="login-title">Login</h2>
+					<label for="login">Username</label>
+					<input type="text" name="login" id="username" />
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" />
+					<input type="submit" value="Login" class="submit-btn" />
+				</form>
+				<div class="register-container">
+					<h2 class="login-title">Register</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam,
+						sunt!
+					</p>
+					<button class="register-btn">Register</button>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

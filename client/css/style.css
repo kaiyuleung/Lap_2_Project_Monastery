@@ -1,0 +1,108 @@
+/* General */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	background: url("../img//background.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom center;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: "Kanit", sans-serif;
+	font-weight: 700;
+}
+
+a,
+p,
+button,
+input,
+label {
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+}
+
+/* Container */
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.inner-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	background-color: rgba(250, 114, 104, 0.918);
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+		rgba(0, 0, 0, 0.22) 0px 10px 10px;
+	max-width: 600px;
+	border-radius: 12px;
+}
+
+.my-form,
+.register-container {
+	width: 100%;
+	height: 100%;
+	padding: 2rem;
+}
+
+.login-title {
+	display: inline-block;
+	border-bottom: 5px solid #001220;
+	width: 50%;
+	margin-bottom: 0.5rem;
+}
+
+.my-form {
+	display: flex;
+	flex-direction: column;
+	border-right: 2px solid #001220;
+}
+
+#username,
+#password {
+	width: 100%;
+	margin: 0.5rem 0;
+	padding: 0.5rem;
+	border: none;
+	border-radius: 4px;
+}
+
+.submit-btn,
+.register-btn {
+	padding: 0.5rem;
+	margin: 0.5rem 0;
+	color: black;
+	font-weight: 700;
+	width: 100%;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+}
+
+.submit-btn:hover,
+.register-btn:hover {
+	transform: translateY(5px);
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.register-container {
+	background-color: #eb5967;
+	border-top-right-radius: 12px;
+	border-bottom-right-radius: 12px;
+}
