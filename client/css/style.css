@@ -118,3 +118,29 @@ h1 {
 	border-bottom-right-radius: 12px;
 	border-left: 2px solid #001220;
 }
+
+/* Responsiveness */
+
+@media screen and (max-width: 900px) {
+	#login-container,
+	#register-container {
+		grid-template-columns: 1fr;
+		width: 90%;
+		max-width: 500px;
+		grid-gap: 20px;
+		border-left: none !important;
+		margin: 0;
+	}
+	.right-section {
+		border: none;
+		border-top: 2px solid #001220;
+		border-radius: 0;
+		border-bottom-left-radius: 12px;
+		border-bottom-right-radius: 12px;
+	}
+
+	.my-form,
+	.right-section {
+		padding: 1rem;
+	}
+}
