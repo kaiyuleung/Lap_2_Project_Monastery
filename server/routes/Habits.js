@@ -1,18 +1,24 @@
 const express = require('express');
+const { model } = require('mongoose');
 const Model = require('../models/Model');
 
 const router = express.Router();
 
 //Post Method
 router.post('/post', async (req, res) => {
+    // console.log("req.body.username:", req.body.username)
+    // console.log("req.body.habits:", req.body.habits[0])
     const data = new Model({
-        name: req.body.name,
-        age: req.body.age
+        username: req.body.username,
+        habits: req.body.habits
     })
-
     try {
-        const dataToSave = await data.save();
-        res.status(200).json(dataToSave)
+        // const dataToSave = await data.save();
+        // // console.log("dataToSave", dataToSave)
+        // // console.log("data", data)
+        // res.status(200).json(dataToSave)
+        const newHabit = await Model.create(req.body);
+        res.status(201).json({ result: newHabit });
     }
     catch (error) {
         res.status(400).json({message: error.message})
@@ -44,19 +50,22 @@ router.get('/getOne/:id', async (req, res) => {
 
 //Update by ID Method
 router.patch('/update/:id', async (req, res) => {
-
-    const id = req.params.id;
-    const updatedData = req.body;
-    const options = { new: true };
+    console.log("update route running")
+    // const id = req.params.id;
+    // const updatedData = req.body;
+    // const options = { new: true };
 
     try {
-     
-
-        const result = await Model.findByIdAndUpdate(
-            id, updatedData, options
-        )
-
-        res.send(result)
+        
+        let data = await Model.findById(req.params.id);
+        const newData = data.habits.map(
+            data => {data.pray.current += 1;
+            return data})
+        const pleaseUpdate = await Model.findByIdAndUpdate(req.params.id, data)
+        console.log(newData)
+        // await data.habits[0].pray.current + 1;
+        // console.log(data.habits[0].pray.current +1)
+        res.send(pleaseUpdate)
     }
     catch (error) {
         res.status(400).json({ message: error.message })

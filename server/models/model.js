@@ -3,65 +3,74 @@ const mongoose = require('mongoose');
 const dataSchema = new mongoose.Schema({
     username: {
         required: true,
-        type: String,
-        habits: [
+        type: String
+    },
+    habits: [
     {
         pray: {
-        required: true,
-        type: Number,
-        target: Number,
-        completed: false
+        type: Object, "default": {
+            target: Number,
+            current: Number,
+            frequency: String,
+            streak: Number,
+            completed: Boolean
+        }   
     }},
     {
-    meditation: {
-        required: true,
-        type: Number,
-        target: Number,
-        current: Number,
-        frequency: String,
-        streak: Number,
-        completed: false
-    }},
+        meditation: {
+            type: Object, "default": {
+                // required: true,
+                target: Number,
+                current: Number,
+                frequency: String,
+                streak: Number,
+                completed: Boolean
+            }
+        }},
     {
     exercise: {
-        required: true,
-        type: Number,
-        target: Number,
-        current: Number,
-        frequency: String,
-        streak: Number,
-        completed: false
+        type: Object, "default": {
+            // required: true,
+            target: Number,
+            current: Number,
+            frequency: String,
+            streak: Number,
+            completed: Boolean
+        }
     }},
     {
     water_consumption: {
-        required: true,
-        type: Number,
-        target: Number,
-        current: Number,
-        frequency: String,
-        streak: Number,
-        completed: false
+        type: Object, "default": {
+            // required: true,
+            target: Number,
+            current: Number,
+            frequency: String,
+            streak: Number,
+            completed: Boolean
+        }
     }},
     {
     sleep: {
-        required: true,
-        type: Number,
-        target: Number,
-        current: Number,
-        frequency: String,
-        streak: Number,
-        completed: false
+        type: Object, "default": {
+            // required: true,
+            target: Number,
+            current: Number,
+            frequency: String,
+            streak: Number,
+            completed: Boolean
+        }
     }},
     {
     eat_veggies: {
-        required: true,
-        type: Number,
-        target: Number,
-        current: Number,
-        frequency: String,
-        streak: Number,
-        completed: false
+        type: Object, "default": {
+            // required: true,
+            target: Number,
+            current: Number,
+            frequency: String,
+            streak: Number,
+            completed: Boolean
+        }
     }}
-]}})
+]})
 
 module.exports = mongoose.model('Data', dataSchema)
