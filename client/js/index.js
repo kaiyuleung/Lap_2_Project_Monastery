@@ -17,7 +17,7 @@ loginBtn.addEventListener("click", switchContainer);
 registerBtn.addEventListener("click", switchContainer);
 
 // Functions
-function handleLogin(e) {
+async function handleLogin(e) {
 	// Prevent Reload
 	e.preventDefault();
 	// Get Login details & remove whitespace
@@ -28,19 +28,20 @@ function handleLogin(e) {
 	//  Save to local Storage
 
 	/// Check Response Status
+
+	// Save user to local Storage
+	// ? localStorage.setItem("username", username);
+	// Change to Account Overview Page
+	window.location = "http://127.0.0.1:5500/client/account.html";
 }
 
-function handleRegister(e) {
+async function handleRegister(e) {
 	// Prevent Reload
 	e.preventDefault();
 	// Get Register details & remove whitespace
 	const username = e.target.registerUsername.value.trim();
 	const password = e.target.registerPassword.value.trim();
 	const confirmPassword = e.target.confirmPassword.value.trim();
-	// Switch To Login Form
-	registerContainer.style.display = "none";
-	loginContainer.style.display = "flex";
-	console.log(username, password, confirmPassword);
 	// Check Username & Password
 	if (!username || username.length < 5) {
 		return alert("Username must be at least 5 characters.");
@@ -56,11 +57,11 @@ function switchContainer(e) {
 	const container = e.target.textContent;
 	if (container === "Register") {
 		// Switch To Register Form
-		registerContainer.style.display = "flex";
+		registerContainer.style.display = "grid";
 		loginContainer.style.display = "none";
 	} else {
 		// Switch To Login Form
 		registerContainer.style.display = "none";
-		loginContainer.style.display = "flex";
+		loginContainer.style.display = "grid";
 	}
 }

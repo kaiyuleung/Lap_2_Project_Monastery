@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Poppins:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/b7207ee847.js"
+			crossorigin="anonymous"
+		></script>
+		<script defer src="./js/habit.js"></script>
+		<link rel="stylesheet" href="./css/habit.css" />
+		<title>Habit</title>
+	</head>
+	<body>
+		<div class="back-btn">
+			<i class="fa-regular fa-square-caret-left"></i>
+		</div>
+		<section class="habit-container">
+			<!-- Habit -->
+			<div class="habit">
+				<h1 id="habit-text">Meditate</h1>
+			</div>
+			<!-- Stats -->
+			<div class="stats-container">
+				<div class="stat-item">
+					<div class="stat-left">
+						<p>Frequency</p>
+						<i class="fa-sharp fa-solid fa-wave-square"></i>
+					</div>
+					<div class="stat-right">
+						<h3 id="frequency">Weekly</h3>
+					</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-left">
+						<p>Streak</p>
+						<i class="fa-solid fa-fire"></i>
+					</div>
+					<div class="stat-right">
+						<h3 id="streak">0</h3>
+					</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-left">
+						<p>Current</p>
+						<i class="fa-solid fa-spinner"></i>
+					</div>
+					<div class="stat-right">
+						<h3 id="current">2</h3>
+					</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-left">
+						<p>Goal</p>
+						<i class="fa-solid fa-bullseye"></i>
+					</div>
+					<div class="stat-right">
+						<h3 id="goal">7</h3>
+					</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-left">
+						<p>Complete?</p>
+						<i class="fa-solid fa-circle-check"></i>
+					</div>
+					<div class="stat-right">
+						<h3 id="complete">No</h3>
+					</div>
+				</div>
+			</div>
+			<!-- Buttons -->
+			<div class="buttons-container">
+				<button class="increment-btn">
+					<i class="fa-solid fa-circle-plus"></i>
+				</button>
+				<button class="remove-btn">
+					<i class="fa-solid fa-trash"></i>
+				</button>
+			</div>
+		</section>
+	</body>
+</html>
