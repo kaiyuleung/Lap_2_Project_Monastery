@@ -17,7 +17,7 @@ loginBtn.addEventListener("click", switchContainer);
 registerBtn.addEventListener("click", switchContainer);
 
 // Functions
-function handleLogin(e) {
+async function handleLogin(e) {
 	// Prevent Reload
 	e.preventDefault();
 	// Get Login details & remove whitespace
@@ -32,10 +32,10 @@ function handleLogin(e) {
 	// Save user to local Storage
 	// ? localStorage.setItem("username", username);
 	// Change to Account Overview Page
-	window.location = "http://127.0.0.1:5500/client/accout.html";
+	window.location = "http://127.0.0.1:5500/client/account.html";
 }
 
-function handleRegister(e) {
+async function handleRegister(e) {
 	// Prevent Reload
 	e.preventDefault();
 	// Get Register details & remove whitespace
