@@ -126,7 +126,7 @@ h1 {
 	#register-container {
 		grid-template-columns: 1fr;
 		width: 90%;
-		max-width: 500px;
+		max-width: 400px;
 		grid-gap: 20px;
 		border-left: none !important;
 		margin: 0;
@@ -141,6 +141,6 @@ h1 {
 
 	.my-form,
 	.right-section {
-		padding: 1rem;
+		padding: 1.5rem;
 	}
 }

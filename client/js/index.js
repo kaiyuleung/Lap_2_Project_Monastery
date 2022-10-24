@@ -56,11 +56,11 @@ function switchContainer(e) {
 	const container = e.target.textContent;
 	if (container === "Register") {
 		// Switch To Register Form
-		registerContainer.style.display = "flex";
+		registerContainer.style.display = "grid";
 		loginContainer.style.display = "none";
 	} else {
 		// Switch To Login Form
 		registerContainer.style.display = "none";
-		loginContainer.style.display = "flex";
+		loginContainer.style.display = "grid";
 	}
 }
