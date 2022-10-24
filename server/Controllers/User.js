@@ -1,4 +1,4 @@
-const userModel = require("../Schema/User");
+const userModel = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
