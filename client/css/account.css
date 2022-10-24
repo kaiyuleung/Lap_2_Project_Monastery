@@ -1,5 +1,15 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 body {
-	background-image: linear-gradient(to top, #88d3ce 0%, #6e45e2 100%);
 	height: 100vh;
-	overflow-x: hidden;
+	width: 100%;
+	overflow: hidden;
+	background: url("../img//background.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom center;
 }
