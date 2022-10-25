@@ -32,7 +32,7 @@ async function handleLogin(e) {
 	// Save user to local Storage
 	// ? localStorage.setItem("username", username);
 	// Change to Account Overview Page
-	window.location = "http://127.0.0.1:5500/client/account.html";
+	window.location = `${window.location.origin}/client/account.html`;
 }
 
 async function handleRegister(e) {
