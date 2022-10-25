@@ -38,6 +38,31 @@ async function getOne (req, res) {
     }
 }
 
+async function postHabit (req, res) {
+    try {
+        const newHabit = {
+            "habitName": req.body.habitName,
+            "target": req.body.target,
+            "current":  req.body.target,
+            "frequency":  req.body.frequency,
+            "streak":  req.body.streak,
+            "completed":  req.body.completed
+        }
+
+        const data = await Model.find({username: req.user.name});
+        const newData = data[0];
+        if(newData.habits.some(h => h.habitName === newHabit.habitName)){
+            throw new Error("Habbit already exists.")
+        }
+        newData.habits.push(newHabit);
+        await Model.updateOne({_id: newData._id}, newData)
+        res.status(202).json(newData.habits.at(-1));
+
+    } catch (err) { res.status(500).json({message: err.message}) }
+}
+
+
+
 async function getHabit (req, res) {
     console.log("getHabit working", req.params.id)
     try{
@@ -45,8 +70,7 @@ async function getHabit (req, res) {
         const newData = data[0].habits.filter(h => {
             return h._id == req.params.id
         }) 
-        console.log(newData)
-        res.json(data)
+        res.json(newData)
 
     }
     catch(error){
@@ -82,4 +106,4 @@ async function destroy (req, res) {
     }
 }
 
-module.exports = { post, getAll, getOne, getHabit, update, destroy }
+module.exports = { post, getAll, getOne, postHabit, getHabit, update, destroy }
