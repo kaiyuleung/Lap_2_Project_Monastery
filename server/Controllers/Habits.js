@@ -1,25 +1,14 @@
 const Model = require('../models/model');
 
 async function post (req, res) {
-    // console.log("req.body.username:", req.body.username)
-    // console.log("req.body.habits:", req.body.habits[0])
     const data = new Model({
         username: req.body.username,
         habits: req.body.habits
     })
-    // console.log("user", req.body.username)
     console.log(req.body.habits)
 
     try {
-        
-        // const dataToSave = await data.save();
-        // // console.log("dataToSave", dataToSave)
-        // // console.log("data", data)
-        // res.status(200).json(dataToSave)
         const newHabit = await Model.create(data);
-        // console.log("req body", req.body)
-        // console.log("new habit", newHabit)
-        // console.log("model"),
         res.status(201).json({ result: newHabit });
     }
     catch (error) {
