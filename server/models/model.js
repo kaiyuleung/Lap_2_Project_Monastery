@@ -80,52 +80,12 @@ const dataSchema = new mongoose.Schema({
     habits: [
     {
             habitName: {type: String, default: "Pray"},
-            target: {type: Number, default: 0},
+            target: {type: Number, default: 1},
             current: {type: Number, default: 0},
-            frequency: String,
+            frequency: {type: String, default: "Daily"},
             streak: {type: Number, default: 0},
             completed: {type: Boolean, default: false}
         
-    },
-    {
-        habitName: {type: String, default: "Meditation"},
-        target: {type: Number, default: 0},
-        current: {type: Number, default: 0},
-        frequency: String,
-        streak: {type: Number, default: 0},
-        completed: {type: Boolean, default: false}
-    },
-    {
-        habitName: {type: String, default: "exercise"},
-        target: {type: Number, default: 0},
-        current: {type: Number, default: 0},
-        frequency: String,
-        streak: {type: Number, default: 0},
-        completed: {type: Boolean, default: false}
-    },
-    {
-        habitName: {type: String, default: "water_consumption"},
-        target: {type: Number, default: 0},
-        current: {type: Number, default: 0},
-        frequency: String,
-        streak: {type: Number, default: 0},
-        completed: {type: Boolean, default: false}
-    },
-    {
-        habitName: {type: String, default: "sleep"},
-        target: {type: Number, default: 0},
-        current: {type: Number, default: 0},
-        frequency: String,
-        streak: {type: Number, default: 0},
-        completed: {type: Boolean, default: false}
-    },
-    {
-        habitName: {type: String, default: "eat_veggies"},
-        target: {type: Number, default: 0},
-        current: {type: Number, default: 0},
-        frequency: String,
-        streak: {type: Number, default: 0},
-        completed: {type: Boolean, default: false}
     }
 ]})
 
