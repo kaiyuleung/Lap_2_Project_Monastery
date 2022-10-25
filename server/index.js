@@ -1,22 +1,23 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
 const mongoString = process.env.DATABASE_URL;
-const cors = require('cors');
-const user = require('./routes/User');
-const habit = require('./routes/Habits');
+const cors = require("cors");
+const user = require("./routes/User");
+const habit = require("./routes/Habits");
+const authenticateToken = require("./Middleware/authenticateToken");
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
-database.on('error', (error) => {
-    console.log(error)
-})
+database.on("error", (error) => {
+	console.log(error);
+});
 
-database.once('connected', () => {
-    console.log('Database Connected');
-})
+database.once("connected", () => {
+	console.log("Database Connected");
+});
 const app = express();
 
 //middleware
@@ -28,12 +29,9 @@ app.get("/", (req, res) => {
 });
 
 // app.use('/api', routes)
-app.use('/users', user)
-app.use('/habits', habit)
+app.use("/users", user);
+app.use("/habits", authenticateToken, habit);
 
 app.listen(3001, () => {
-    console.log(`Server Started at ${3001}`)
-})
-
-
-
+	console.log(`Server Started at ${3001}`);
+});

@@ -32,7 +32,7 @@ const userLogin = async (req, res) => {
 	// Look for user
 	const user = await userModel.find({ username });
 	if (!user.length) {
-		return res.status(400).send("Cannot find user");
+		return res.status(400).json("Cannot find user");
 	}
 	try {
 		// Check Password
@@ -42,7 +42,7 @@ const userLogin = async (req, res) => {
 			const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
 			res.status(200).json({ accessToken: accessToken });
 		} else {
-			res.status(401).send("Not Allowed! Password does not match.");
+			res.status(401).json("Not Allowed! Password does not match.");
 		}
 	} catch (error) {
 		res.status(404).json({ msg: error.message });
