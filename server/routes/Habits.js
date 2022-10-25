@@ -12,12 +12,19 @@ router.post('/post', async (req, res) => {
         username: req.body.username,
         habits: req.body.habits
     })
+    // console.log("user", req.body.username)
+    console.log(req.body.habits)
+
     try {
+        
         // const dataToSave = await data.save();
         // // console.log("dataToSave", dataToSave)
         // // console.log("data", data)
         // res.status(200).json(dataToSave)
-        const newHabit = await Model.create(req.body);
+        const newHabit = await Model.create(data);
+        // console.log("req body", req.body)
+        // console.log("new habit", newHabit)
+        // console.log("model"),
         res.status(201).json({ result: newHabit });
     }
     catch (error) {
@@ -48,19 +55,32 @@ router.get('/getOne/:id', async (req, res) => {
     }
 })
 
+//Get by ID Method
+router.get('/getAll/:username', async (req, res) => {
+    console.log(req.user)
+    try{
+        const data = await Model.find({username: req.user});
+        res.json(data)
+
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
 //Update by ID Method
 router.patch('/update/:id', async (req, res) => {
     console.log("update route running")
     // const id = req.params.id;
     // const updatedData = req.body;
     // const options = { new: true };
-
     try {
-        
         let data = await Model.findById(req.params.id);
         const newData = data.habits.map(
+            // data => {console.log(data)}
             data => {data.pray.current += 1;
-            return data})
+            return data}
+            )
         const pleaseUpdate = await Model.findByIdAndUpdate(req.params.id, data)
         console.log(newData)
         // await data.habits[0].pray.current + 1;
