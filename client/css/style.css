@@ -131,6 +131,7 @@ h1 {
 
 .incorrect-details {
 	position: absolute;
+
 	top: 50px;
 	right: 50px;
 	bottom: 50px;
@@ -141,6 +142,16 @@ h1 {
 	box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.486);
 	border-radius: 24px;
 	display: none;
+}
+
+.incorrect-details img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	padding: 4rem 0 0rem;
+	height: 60%;
+	max-width: 300px;
 }
 
 .wrong {
@@ -158,8 +169,8 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100%;
 	font-size: min(3.5vw, 30px);
+	margin-top: 2rem;
 }
 
 .wrong:hover {
