@@ -1,4 +1,5 @@
 const Model = require('../models/model');
+const schedule = require('node-schedule');
 
 async function post (req, res) {
     const data = new Model({
@@ -81,5 +82,17 @@ async function destroy (req, res) {
         res.status(400).json({ message: error.message })
     }
 }
+
+
+    const rule = new schedule.RecurrenceRule();
+    rule.hour = 17;
+    rule.minute = 30;
+    rule.tz = 'Europe/Belfast';
+    
+    const job = schedule.scheduleJob(rule, function(){
+        console.log('A new day has begun in the UTC timezone!');
+      });
+
+
 
 module.exports = { post, getAll, getOne, getHabit, update, destroy }
