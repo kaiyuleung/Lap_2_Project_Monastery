@@ -74,7 +74,8 @@ const mongoose = require('mongoose');
 const dataSchema = new mongoose.Schema({
     username: {
         required: true,
-        type: String
+        type: String,
+        unique: true
     },
     habits: [
     {

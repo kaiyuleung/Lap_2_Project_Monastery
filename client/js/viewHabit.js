@@ -1,3 +1,7 @@
+// Global Variables
+const frontendURL = window.location.origin;
+const backendURL = "http://localhost:3001";
+
 // Buttons
 const IncrementCurrent = document.querySelector(".increment-habit-btn");
 const deleteHabit = document.querySelector(".remove-habit-btn");
@@ -7,7 +11,7 @@ IncrementCurrent.addEventListener("click", incrementCurrent);
 deleteHabit.addEventListener("click", removeHabit);
 backBtn.addEventListener(
 	"click",
-	() => (window.location = `${window.location.origin}/client/account.html`)
+	() => (window.location = `${frontendURL}/client/account.html`)
 );
 
 // Functions
@@ -28,7 +32,7 @@ async function removeHabit() {
 	try {
 		// Delete Habit
 		// Go back to account Overview Page
-		window.location = `${window.location.origin}/client/account.html`;
+		window.location = `${frontendURL}/client/account.html`;
 	} catch (error) {
 		console.log(error);
 	}
@@ -40,7 +44,7 @@ async function loadHabitData() {
 		// Get Data
 		try {
 			const res = await fetch(
-				`http://localhost:3001/habits/getOne/6356c19b8e90960b59e33798`
+				`${backendURL}/habits/getOne/6356c19b8e90960b59e33798`
 			);
 			const data = await res.json();
 

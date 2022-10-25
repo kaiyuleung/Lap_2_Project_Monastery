@@ -32,6 +32,7 @@ app.get("/", (req, res) => {
 app.use('/users', user)
 app.use('/habits', authenticateToken, habit)
 
-app.listen(3001, () => {
-	console.log(`Server Started at ${3001}`);
+const path = 3001;
+app.listen(path, () => {
+	console.log(`Server Started at ${path}`);
 });
