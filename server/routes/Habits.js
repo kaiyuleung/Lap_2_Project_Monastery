@@ -3,7 +3,7 @@ const router = express.Router();
 const habitsController = require('../Controllers/Habits');
 
 //Post Method
-router.post('/post', habitsController.post )
+router.post('/post', habitsController.post)
 
 //Get all Method
 router.get('/getAll', habitsController.getAll)
@@ -22,6 +22,9 @@ router.get('/getAll', habitsController.getAll)
 
 //Get by ID Method
 router.get('/getUserHabits', habitsController.getOne)
+
+//Post a habit
+router.patch('/getUserHabits', habitsController.postHabit)
 
 //Get by Habit
 router.get('/getUserHabits/:id', habitsController.getHabit)
