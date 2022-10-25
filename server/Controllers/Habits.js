@@ -67,21 +67,15 @@ async function getHabit (req, res) {
 
 async function update (req, res) {
     console.log("update route running")
-    // const id = req.params.id;
-    // const updatedData = req.body;
-    // const options = { new: true };
     try {
-        let data = await Model.findById(req.params.id);
-        const newData = data.habits.map(
-            // data => {console.log(data)}
-            data => {data.pray.current += 1;
-            return data}
-            )
-        const pleaseUpdate = await Model.findByIdAndUpdate(req.params.id, data)
-        console.log(newData)
-        // await data.habits[0].pray.current + 1;
-        // console.log(data.habits[0].pray.current +1)
-        res.send(pleaseUpdate)
+        let data = await Model.find({username: req.user.name});
+        let newData = data[0].habits.filter(h => {
+            return h._id == req.params.id
+        })
+        let userID = data[0].id
+        newData[0].current += 1
+        await Model.updateOne({_id: userID}, data[0])
+    res.json(data)
     }
     catch (error) {
         res.status(400).json({ message: error.message })
