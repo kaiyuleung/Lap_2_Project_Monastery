@@ -23,7 +23,10 @@ router.get('/getAll', habitsController.getAll)
 // })
 
 //Get by ID Method
-router.get('/getAll/:username', habitsController.getOne)
+router.get('/getUserHabits', habitsController.getOne)
+
+//Get by Habit
+router.get('/getUserHabits/:id', habitsController.getHabit)
 
 //Update by ID Method
 router.patch('/update/:id', habitsController.update)

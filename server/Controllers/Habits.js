@@ -38,9 +38,25 @@ async function getAll (req, res) {
 }
 
 async function getOne (req, res) {
-    console.log(req.user)
+    console.log("req user form getOne:", req.user.name)
     try{
-        const data = await Model.find({username: req.user});
+        const data = await Model.find({username: req.user.name});
+        res.json(data)
+
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}
+
+async function getHabit (req, res) {
+    console.log("getHabit working", req.params.id)
+    try{
+        const data = await Model.find({username: req.user.name});
+        const newData = data[0].habits.filter(h => {
+            return h._id == req.params.id
+        }) 
+        console.log(newData)
         res.json(data)
 
     }
@@ -83,4 +99,4 @@ async function destroy (req, res) {
     }
 }
 
-module.exports = { post, getAll, getOne, update, destroy }
+module.exports = { post, getAll, getOne, getHabit, update, destroy }
