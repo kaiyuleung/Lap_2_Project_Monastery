@@ -7,7 +7,7 @@ IncrementCurrent.addEventListener("click", incrementCurrent);
 deleteHabit.addEventListener("click", removeHabit);
 backBtn.addEventListener(
 	"click",
-	() => (window.location = "http://127.0.0.1:5500/client/account.html")
+	() => (window.location = `${window.location.origin}/client/account.html`)
 );
 
 // Functions
@@ -28,7 +28,7 @@ async function removeHabit() {
 	try {
 		// Delete Habit
 		// Go back to account Overview Page
-		// window.location = "http://127.0.0.1:5500/client/account.html";
+		window.location = `${window.location.origin}/client/account.html`;
 	} catch (error) {
 		console.log(error);
 	}
