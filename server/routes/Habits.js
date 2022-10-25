@@ -1,8 +1,6 @@
 const express = require('express');
-const { model } = require('mongoose');
-const habitsController = require('../Controllers/Habits')
-
 const router = express.Router();
+const habitsController = require('../Controllers/Habits');
 
 //Post Method
 router.post('/post', habitsController.post )

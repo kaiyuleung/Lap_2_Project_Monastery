@@ -1,3 +1,7 @@
+// Global Variables
+const frontendURL = window.location.origin;
+const backendURL = "http://localhost:3001";
+
 // Forms
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
@@ -31,7 +35,7 @@ async function handleLogin(e) {
 	const password = e.target.password.value.trim();
 	// TODO Send Request below To Verify Login Details
 	try {
-		const res = await fetch("http://localhost:3001/users/login", {
+		const res = await fetch(`${backendURL}/users/login`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -50,7 +54,7 @@ async function handleLogin(e) {
 			localStorage.setItem("session", data.accessToken);
 			localStorage.setItem("username", username);
 			// Login User & Change to Account Overview Page
-			window.location = "http://127.0.0.1:5501/client/habits.html";
+			window.location = `${frontendURL}/client/habits.html`;
 		}
 	} catch (error) {
 		console.log(error.message);
@@ -74,7 +78,7 @@ async function handleRegister(e) {
 	}
 	// POST Request TO Register New User
 	try {
-		const res = await fetch("http://localhost:3001/users", {
+		const res = await fetch(`${backendURL}/users`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",

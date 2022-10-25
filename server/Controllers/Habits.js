@@ -1,4 +1,4 @@
-const Model = require('../models/Model');
+const Model = require('../models/model');
 
 async function post (req, res) {
     // console.log("req.body.username:", req.body.username)

@@ -1,4 +1,5 @@
 const userModel = require("../models/User");
+const Model = require('../models/model');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -17,10 +18,23 @@ const addNewUser = async (req, res) => {
 		const salt = await bcrypt.genSalt();
 		const hashedPassword = await bcrypt.hash(req.body.password, salt);
 		// Create new User
+		const userHabits = await Model.create({	
+			username: req.body.username,
+			habits: [
+				{"habitName": "Pray"},
+				{"habitName": "exercise"},
+				{"habitName": "Meditation"},
+				{"habitName": "water_consumption"},
+				{"habitName": "eat_veggies"},
+				{"habitName": "sleep"}
+			]
+		})
 		const newUser = await userModel.create({
 			username: req.body.username,
 			password: hashedPassword,
+			habitsID: userHabits._id
 		});
+
 		res.status(201).json({ result: newUser });
 	} catch (error) {
 		res.status(404).json({ msg: error.message });
