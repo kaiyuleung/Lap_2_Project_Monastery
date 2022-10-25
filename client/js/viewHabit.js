@@ -1,6 +1,6 @@
 // Buttons
-const IncrementCurrent = document.querySelector(".increment-btn");
-const deleteHabit = document.querySelector(".remove-btn");
+const IncrementCurrent = document.querySelector(".increment-habit-btn");
+const deleteHabit = document.querySelector(".remove-habit-btn");
 const backBtn = document.querySelector(".back-btn");
 // Event Listeners
 IncrementCurrent.addEventListener("click", incrementCurrent);
@@ -12,20 +12,21 @@ backBtn.addEventListener(
 
 // Functions
 async function incrementCurrent() {
-	// ! TODO ADD API Request to increment current counter
-	// ! Which needs to check if goal is completed?
+	console.log("Increment Current");
+	// TODO ADD API Request to increment current counter
 	try {
-		// get Request to increment counter
+		// Refresh page
+		location.reload();
 	} catch (error) {
 		console.log(error);
 	}
 }
 
 async function removeHabit() {
+	console.log("Remove Habit");
 	// ! TODO DELETE API Request
 	try {
 		// Delete Habit
-
 		// Go back to account Overview Page
 		window.location = `${window.location.origin}/client/account.html`;
 	} catch (error) {
@@ -34,9 +35,19 @@ async function removeHabit() {
 }
 
 async function loadHabitData() {
+	console.log("Loading Data");
 	try {
-		console.log("Loading Data");
 		// Get Data
+		try {
+			const res = await fetch(
+				`http://localhost:3001/habits/getOne/6356c19b8e90960b59e33798`
+			);
+			const data = await res.json();
+
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
 
 		// Get DOM Elements
 

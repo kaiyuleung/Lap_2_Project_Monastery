@@ -127,6 +127,45 @@ h1 {
 	border-left: 2px solid #001220;
 }
 
+/* Message */
+
+.incorrect-details {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	bottom: 50px;
+	left: 50px;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.9);
+	color: white;
+	box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.486);
+	border-radius: 24px;
+	display: none;
+}
+
+.wrong {
+	color: white;
+	font-size: 60px;
+	position: absolute;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.incorrect-message {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	font-size: min(3.5vw, 30px);
+}
+
+.wrong:hover {
+	color: var(--peach-color);
+}
+
 /* Responsiveness */
 
 @media screen and (max-width: 900px) {
