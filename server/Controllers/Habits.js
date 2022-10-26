@@ -106,15 +106,38 @@ async function destroyHabit (req, res) {
 }
 
 async function leaderboard (req, res){
+    const rankBy = ["totalStreak", "totalTask"];
     try {
-        const data = await Model.find({"totalStreak": {$gte: 1} }).sort({"totalStreak": -1 }).limit(3);
-        res.json(data.map(u => { 
-            return {
-            username: u.username,
-            totalStreak: u.totalStreak
-            }
-        }))
-    } catch (err) { res.status(404).json({ message: err.message }) }
+        switch (req.body.rankBy) {
+            case rankBy[0]:
+                res.json(await Model.find({"totalStreak": {$gte: 1} })
+                    .sort({"totalStreak": -1 })
+                    .limit(3)
+                    .map(u => { 
+                        return {
+                        username: u.username,
+                        totalStreak: u.totalStreak
+                        }
+                    }))
+                break;
+            case rankBy[1]:
+                res.status(200).json(await Model.find({"totalStreak": {$gte: 1} })
+                .sort({"totalStreak": -1 })
+                .limit(3)
+                .map(u => { 
+                    return {
+                    username: u.username,
+                    totalStreak: u.totalStreak
+                    }
+                }))
+                break;
+            default:
+                throw new Error(`Ranking mode must be one of the following options: [${rankBy}]`)
+
+        }
+        
+        //todo ranking for users with a tie for same place needs to be done in the frontend
+    } catch (err) { res.status(400).json({ message: err.message }) }
 }
 
 module.exports = { getUser, postHabit, getHabit, updateHabit, destroyHabit, leaderboard }
