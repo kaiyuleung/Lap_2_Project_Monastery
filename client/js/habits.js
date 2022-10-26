@@ -1,6 +1,6 @@
 // Global Variables
 const frontendURL = window.location.origin;
-const backendURL = "http://localhost:3001";
+const backendURL = "https://monasteri.herokuapp.com";
 // Buttons
 const logoutBtn = document.getElementById("logout-btn");
 const newHabitBtn = document.querySelector(".new-habit-btn");
