@@ -59,7 +59,6 @@ async function postHabit(req, res) {
 			throw new Error("Habit already exists.");
 		}
 		userData.habits.push(newHabit);
-		// await Model.updateOne({_id: userData._id}, userData)
 		await userData.save();
 		res.status(202).json(userData.habits.at(-1));
 	} catch (err) {
@@ -77,19 +76,10 @@ async function updateHabit(req, res) {
 		if (!habitData.length) {
 			throw new Error("No matched habit.");
 		}
+
 		habitData[0].current += 1;
 
-		//todo
-		// check if current has reached target:
-		if (habitData[0].current > habitData[0].target) {
-			// habitData[0].streak += 1;
-			// habitData[0].completed = true;
-			// habitData[0].current = 0;
-			console.log(habitData);
-		}
-		//todo
-
-		//* Total Streak Count Updates
+		//* User Scores Updates
 		userData.totalStreak = userData.habits
 			.map((h) => h.streak)
 			.reduce((r, v) => r + v);
@@ -128,14 +118,14 @@ async function leaderboard(req, res) {
 			case rankBy[0]:
 				let data = await Model.find({ totalStreak: { $gte: 1 } })
 					.sort({ totalStreak: -1 })
-					.limit(3);
+					.limit(5);
 
                 if ( data.length > 0) {
                     res.status(200).json(
                         data.map(u => { 
                             return {
                             username: u.username,
-                            totalStreak: u.totalStreak
+                            score: u.totalStreak
                             }
                         }))
                 } else {
@@ -166,41 +156,6 @@ const job = schedule.scheduleJob(rule, async function () {
 		},
 	});
 });
-
-//     try {
-//         const userData = await Model.findOne({username: req.user.name});
-//         const habitData = userData.habits.filter(h => h._id == req.params.id);
-//         console.log(habitData,"habit data-----------------------------------------")
-//         if(!habitData.length){ throw new Error("No matched habit.") }
-
-//         // switch(req.body.mode){
-//         //     case "a":
-//         //         habitData[0].completed = true;
-//         //         break;
-//         //     case "b":
-//         //         habitData[0].current += 1;
-//         //         break;
-//         //     case "c":
-//         //         habitData[0].streak = 0;
-//         //         break;
-//         //     default:
-//         //         throw new Error("Not a valid update mode.");
-//         // }
-//         await Model.updateOne({_id: req.params.id}, userData)
-//         await userData.save();
-
-//         // let data = await Model.find({username: req.user.name});
-//         // let newData = data[0].habits.filter(h => {
-//         //     return h._id == req.params.id
-//         // })
-//         // let userID = data[0].id
-//         // newData[0].current += 1
-//         // await Model.updateOne({_id: userID}, data[0])
-//     res.json(habitData[0])
-//     }
-//     catch (error) {
-//         res.status(400).json({ message: error.message })
-//     }
 
 module.exports = {
 	getUser,
