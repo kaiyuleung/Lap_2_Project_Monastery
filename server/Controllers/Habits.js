@@ -38,11 +38,9 @@ async function streakChecker (req, res) {
 async function getHabit (req, res) {
     try{
         const userData = await Model.findOne({username: req.user.name});
-
-        console.log(userData)
-        // const habitData = userData.habits.filter(h => h._id == req.params.id);
-        if(Object.keys(userData).length === 0){ throw new Error("User does not have any habits.") }
-        res.status(200).json(userData.habits);
+        const habitData = userData.habits.filter(h => h._id == req.params.id);
+        if(!habitData.length){ throw new Error("No matched habit.") }
+        res.status(200).json(habitData[0]);
     }
     catch(error){
         res.status(404).json({message: error.message})
