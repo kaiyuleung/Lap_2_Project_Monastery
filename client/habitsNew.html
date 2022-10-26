@@ -4,6 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://kit.fontawesome.com/b7207ee847.js"
+			crossorigin="anonymous"
+		></script>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -36,6 +40,26 @@
 			<div class="habit-item">Sleep</div>
 			<div class="habit-item">Eat Veggies</div>
 		</div>
-		<!-- Add New Habit -->
+		<!-- Add New Habit Form -->
+		<form class="new-habit-form">
+			<i class="fa-regular fa-circle-xmark cancel-habit"></i>
+			<label for="habit-name">Habit Name</label>
+			<input type="text" id="habit-name" placeholder="Enter habit here..." />
+			<label for="frequency">Frequency:</label>
+			<select name="frequency" id="frequency">
+				<option value="daily">Daily</option>
+				<option value="weekly">weekly</option>
+				<option value="monthly">Monthly</option>
+			</select>
+			<!-- TODO Drop down-->
+			<label for="habit-target">Target</label>
+			<input
+				type="text"
+				id="habit-target"
+				placeholder="Enter your target here..."
+			/>
+			<input type="submit" value="Create" id="add-habit" />
+		</form>
+		<i class="fa-solid fa-circle-plus new-habit-btn"></i>
 	</body>
 </html>

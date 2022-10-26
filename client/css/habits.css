@@ -76,9 +76,9 @@ label {
 	justify-content: flex-start;
 	align-items: flex-start;
 	width: 90%;
-	height: 85vh;
+	height: 75vh;
 	max-width: 1200px;
-	margin: 1rem auto;
+	margin: 1rem auto 0rem;
 	padding: 1rem;
 	overflow-y: scroll;
 }
@@ -125,4 +125,88 @@ label {
 ::-webkit-scrollbar-thumb {
 	border-radius: 6px;
 	background-image: linear-gradient(to top, #e56a62 0%, #c62368 100%);
+}
+
+/* New Habit Form */
+
+.new-habit-form {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	top: 20px;
+	right: 20px;
+	bottom: 20px;
+	left: 20px;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.9);
+	color: white;
+	box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.486);
+	border-radius: 24px;
+	display: none;
+}
+
+.new-habit-form input,
+.new-habit-form select {
+	width: 90%;
+	max-width: 500px;
+	padding: 0.5rem;
+	margin: 1rem 0;
+}
+
+.new-habit-form input:focus,
+.new-habit-form select:focus {
+	background-color: #e56a62;
+	font-weight: 700;
+}
+
+::placeholder {
+	color: rgba(0, 0, 0, 0.562);
+}
+
+.new-habit-form label {
+	font-size: 24px;
+}
+
+#add-habit {
+	font-weight: 700;
+	font-size: 20px;
+	transition: 0.3s ease-in-out;
+}
+
+#add-habit:hover {
+	background-color: var(--red-color);
+	color: white;
+}
+
+.cancel-habit {
+	color: white;
+	font-size: 60px;
+	position: absolute;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.cancel-habit:hover {
+	color: var(--peach-color);
+}
+
+/* New Habit Button */
+
+.new-habit-btn {
+	position: absolute;
+	right: 6%;
+	color: white;
+	margin: 0rem 1rem;
+	font-size: 70px;
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.new-habit-btn:hover {
+	color: var(--dark-color);
 }
