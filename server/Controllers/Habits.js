@@ -172,6 +172,7 @@ async function leaderboard(req, res) {
 							};
 						})
 				);
+				//todo error handling for total streak = 0 for all users
 				break;
 			case rankBy[1]:
 				res.status(200).json(
@@ -191,7 +192,6 @@ async function leaderboard(req, res) {
 					`Ranking mode must be one of the following options: [${rankBy}]`
 				);
 		}
-
 		//todo ranking for users with a tie for same place needs to be done in the frontend
 	} catch (err) {
 		res.status(400).json({ message: err.message });
