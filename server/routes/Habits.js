@@ -8,6 +8,9 @@ router.get('/', habitsController.getUser)
 //Get by Habit
 router.get('/:id', habitsController.getHabit)
 
+//Get all Habit
+router.get('/data/all', habitsController.streakChecker)
+
 //Post a habit
 router.post('/', habitsController.postHabit)
 
