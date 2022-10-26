@@ -17,12 +17,8 @@ router.patch("/user/:id", habitsController.updateHabit);
 //Delete by ID Method
 router.delete("/user/:id", habitsController.destroyHabit);
 
-
-
 // Get leaderboard
-router.get('/leaderboard', habitsController.leaderboard)
-
-
+router.get("/leaderboard/:mode", habitsController.leaderboard);
 
 //Get all Habit
 router.get("/data/all", habitsController.streakChecker);
