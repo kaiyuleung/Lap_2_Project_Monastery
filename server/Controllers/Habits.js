@@ -51,7 +51,8 @@ async function postHabit (req, res) {
             throw new Error("Habit already exists.")
         }
         userData.habits.push(newHabit);
-        await Model.updateOne({_id: userData._id}, userData)
+        // await Model.updateOne({_id: userData._id}, userData)
+        await userData.save();
         res.status(202).json(userData.habits.at(-1));
 
     } catch (err) { 
@@ -78,7 +79,8 @@ async function updateHabit (req, res) {
             default:
                 throw new Error("Not a valid update mode.");
         }
-        await Model.updateOne({_id: req.params.id}, userData)
+        // await Model.updateOne({_id: req.params.id}, userData)
+        await userData.save();
 
 
         // let data = await Model.find({username: req.user.name});
