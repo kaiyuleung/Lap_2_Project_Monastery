@@ -43,7 +43,7 @@ label {
 }
 
 h1 {
-	margin-right: auto;
+	margin: 2rem auto 0 1rem;
 }
 
 #go-back-btn,
