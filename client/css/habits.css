@@ -198,11 +198,8 @@ label {
 /* New Habit Button */
 
 .new-habit-btn {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	width: 90%;
-	max-width: 1200px;
+	position: absolute;
+	right: 6%;
 	color: white;
 	margin: 0rem 1rem;
 	font-size: 70px;
