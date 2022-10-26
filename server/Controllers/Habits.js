@@ -100,7 +100,6 @@ async function updateHabit (req, res) {
 
         //* Total Streak Count Updates
         userData.totalStreak = userData.habits.map(h => h.streak).reduce( (r,v) => r + v );
-        await userData.save();
 
         //* habitData[0].current += 1;
 
@@ -147,31 +146,29 @@ async function leaderboard (req, res){
     try {
         switch (req.body.rankBy) {
             case rankBy[0]:
-                res.json(await Model.find({"totalStreak": {$gte: 1} })
-                    .sort({"totalStreak": -1 })
-                    .limit(3)
-                    .map(u => { 
-                        return {
-                        username: u.username,
-                        totalStreak: u.totalStreak
-                        }
-                    }))
-                    //todo error handling for total streak = 0 for all users
+                let data = await Model
+                .find({"totalStreak": {$gte: 1} })
+                .sort({"totalStreak": -1 })
+                .limit(3);
+
+                if ( data.length > 0) {
+                    res.status(200).json(
+                        data.map(u => { 
+                            return {
+                            username: u.username,
+                            totalStreak: u.totalStreak
+                            }
+                        }))
+                } else {
+                    res.status(204)
+                }
+
                 break;
             case rankBy[1]:
-                res.status(200).json(await Model.find({"totalStreak": {$gte: 1} })
-                .sort({"totalStreak": -1 })
-                .limit(3)
-                .map(u => { 
-                    return {
-                    username: u.username,
-                    totalStreak: u.totalStreak
-                    }
-                }))
+                
                 break;
             default:
                 throw new Error(`Ranking mode must be one of the following options: [${rankBy}]`)
-
         }
         
         //todo ranking for users with a tie for same place needs to be done in the frontend
