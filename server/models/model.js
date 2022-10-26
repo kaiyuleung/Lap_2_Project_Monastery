@@ -78,15 +78,15 @@ const dataSchema = new mongoose.Schema({
         unique: true
     },
     habits: [
-    {
+        {
             habitName: {type: String, default: "Pray"},
             target: {type: Number, default: 1},
             current: {type: Number, default: 0},
             frequency: {type: String, default: "Daily"},
             streak: {type: Number, default: 0},
             completed: {type: Boolean, default: false}
-        
-    }
-]})
+        }
+    ]
+})
 
 module.exports = mongoose.model('Data', dataSchema)
