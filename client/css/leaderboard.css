@@ -38,11 +38,15 @@ label {
 
 .board-heading {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	margin: 1rem auto;
 }
 
+h1 {
+	margin-right: auto;
+}
+
+#go-back-btn,
 #toggle {
 	padding: 0.5rem 2rem;
 	font-weight: 700;
@@ -51,10 +55,12 @@ label {
 	cursor: pointer;
 }
 
+#go-back-btn:hover,
 #toggle:hover {
 	background-color: var(--red-color);
 	color: white;
 	rotate: 6deg;
+	margin: 0 0.5rem;
 }
 
 /* Leaderboard */

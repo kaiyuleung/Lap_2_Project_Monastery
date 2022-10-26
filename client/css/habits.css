@@ -196,11 +196,20 @@ label {
 	color: var(--peach-color);
 }
 
+/* Bottom Container */
+
+.bottom-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+	max-width: 1200px;
+	margin: 0rem auto;
+}
+
 /* New Habit Button */
 
 .new-habit-btn {
-	position: absolute;
-	right: 6%;
 	color: white;
 	margin: 0rem 1rem;
 	font-size: 70px;
@@ -210,4 +219,18 @@ label {
 
 .new-habit-btn:hover {
 	color: var(--dark-color);
+}
+
+#Leaderboard-btn {
+	margin: 1rem;
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	font-weight: 700;
+}
+
+#Leaderboard-btn:hover {
+	background-color: var(--red-color);
+	color: white;
 }

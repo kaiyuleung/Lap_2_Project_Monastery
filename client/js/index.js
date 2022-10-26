@@ -1,7 +1,6 @@
 // Global Variables
 const frontendURL = window.location.origin;
 const backendURL = "https://monasteri.herokuapp.com";
-
 // Forms
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
