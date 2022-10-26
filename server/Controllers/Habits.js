@@ -86,7 +86,7 @@ async function updateHabit(req, res) {
 		if (habitData[0].current > habitData[0].target) {
 			// habitData[0].streak += 1;
 			// habitData[0].completed = true;
-			habitData[0].current = 0;
+			// habitData[0].current = 0;
 			console.log(habitData);
 		}
 		//todo
