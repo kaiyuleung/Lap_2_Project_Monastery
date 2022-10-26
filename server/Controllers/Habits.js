@@ -68,7 +68,7 @@ async function postHabit(req, res) {
 
 async function updateHabit(req, res) {
 	try {
-		//* Get loged-in user's data
+		//* Get logged-in user's data
 		const userData = await Model.findOne({ username: req.user.name });
 		//* Filter user's habits data by ID
 		const habitData = userData.habits.filter((h) => h._id == req.params.id);
