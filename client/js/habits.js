@@ -5,6 +5,7 @@ const backendURL = "https://monasteri.herokuapp.com";
 const logoutBtn = document.getElementById("logout-btn");
 const newHabitBtn = document.querySelector(".new-habit-btn");
 const cancelHabit = document.querySelector(".cancel-habit");
+const leaderboardBtn = document.getElementById("Leaderboard-btn");
 // Form
 const newHabitForm = document.querySelector(".new-habit-form");
 // Containers
@@ -22,6 +23,10 @@ newHabitBtn.addEventListener(
 cancelHabit.addEventListener(
 	"click",
 	() => (newHabitForm.style.display = "none")
+);
+leaderboardBtn.addEventListener(
+	"click",
+	() => (window.location = `${frontendURL}/client/leaderboard.html`)
 );
 
 function logout() {
@@ -63,7 +68,7 @@ async function loadUserHabits() {
 	const username = localStorage.getItem("username");
 	const token = localStorage.getItem("session");
 	const habitsID = localStorage.getItem("habitsID");
-	// TODO Get User Habits on Load
+	// Get User Habits on Load
 	try {
 		const res = await fetch(`${backendURL}/habits/user`, {
 			method: "GET",
