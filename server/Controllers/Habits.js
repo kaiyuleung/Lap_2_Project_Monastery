@@ -73,11 +73,14 @@ async function postHabit (req, res) {
 
 async function updateHabit (req, res) {
     try {
+        //* Get loged-in user's data
         const userData = await Model.findOne({username: req.user.name});
+        //* Filter user's habits data by ID
         const habitData = userData.habits.filter(h => h._id == req.params.id);
+        //* Error handling for no matched habit
         if(!habitData.length){ throw new Error("No matched habit.") }
-        habitData[0].current += 1;
 
+        //* Switch case for different update modes
         switch(req.body.mode){
             case "a":
                 habitData[0].completed = true;
@@ -95,10 +98,11 @@ async function updateHabit (req, res) {
                 throw new Error("Not a valid update mode.");
         }
 
-        // Total Streak Count Updates
+        //* Total Streak Count Updates
         userData.totalStreak = userData.habits.map(h => h.streak).reduce( (r,v) => r + v );
-        // await Model.updateOne({_id: req.params.id}, userData)
         await userData.save();
+
+        //* habitData[0].current += 1;
 
         //todo
         // check if current has reached target:
@@ -110,31 +114,12 @@ async function updateHabit (req, res) {
     }
         //todo
 
-    await Model.updateOne({_id: req.params.id}, userData)
-    await userData.save();
-        // switch(req.body.mode){
-        //     case "a":
-        //         habitData[0].completed = true;
-        //         break;
-        //     case "b":
-        //         habitData[0].current += 1;
-        //         break;
-        //     case "c":
-        //         habitData[0].streak = 0;
-        //         break;
-        //     default:
-        //         throw new Error("Not a valid update mode.");
-    
-    
 
-        // let data = await Model.find({username: req.user.name});
-        // let newData = data[0].habits.filter(h => {
-        //     return h._id == req.params.id
-        // })
-        // let userID = data[0].id
-        // newData[0].current += 1
-        // await Model.updateOne({_id: userID}, data[0])
-    res.json(habitData[0])
+
+    //* save updated user data
+    await userData.save();
+    //* send updated habit
+    res.status(200).json(habitData[0])
     }
     catch (error) {
         res.status(400).json({ message: error.message })
@@ -171,6 +156,7 @@ async function leaderboard (req, res){
                         totalStreak: u.totalStreak
                         }
                     }))
+                    //todo error handling for total streak = 0 for all users
                 break;
             case rankBy[1]:
                 res.status(200).json(await Model.find({"totalStreak": {$gte: 1} })
@@ -251,4 +237,4 @@ async function leaderboard (req, res){
 
 
 
-module.exports = { getUser, postHabit, getHabit, updateHabit, destroyHabit, leaderboard }
+module.exports = { getUser, postHabit, getHabit, updateHabit, destroyHabit, leaderboard, streakChecker }

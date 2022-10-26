@@ -8,9 +8,6 @@ router.get('/user', habitsController.getUser)
 //Get by Habit
 router.get('/user/:id', habitsController.getHabit)
 
-//Get all Habit
-router.get('/data/all', habitsController.streakChecker)
-
 //Post a habit
 router.post('/user', habitsController.postHabit)
 
@@ -20,6 +17,12 @@ router.patch('/user/:id', habitsController.updateHabit)
 //Delete by ID Method
 router.delete('/user/:id', habitsController.destroyHabit)
 
+
+
+
 router.get('/leaderboard', habitsController.leaderboard)
+
+//Get all Habit
+router.get('/data/all', habitsController.streakChecker)
 
 module.exports = router;
