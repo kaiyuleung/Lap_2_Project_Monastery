@@ -1,23 +1,23 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const habitsController = require('../Controllers/Habits');
+const habitsController = require("../Controllers/Habits");
 
-//Get User's habbits
-router.get('/', habitsController.getUser)
+//Get User's habits
+router.get("/", habitsController.getUser);
 
 //Get by Habit
-router.get('/:id', habitsController.getHabit)
+router.get("/:id", habitsController.getHabit);
 
 //Get all Habit
-router.get('/data/all', habitsController.streakChecker)
+router.get("/data/all", habitsController.streakChecker);
 
 //Post a habit
-router.post('/', habitsController.postHabit)
+router.post("/", habitsController.postHabit);
 
 //Update by ID Method
-router.patch('/:id', habitsController.updateHabit)
+router.patch("/:id", habitsController.updateHabit);
 
 //Delete by ID Method
-router.delete('/:id', habitsController.destroyHabit)
+router.delete("/:id", habitsController.destroyHabit);
 
 module.exports = router;

@@ -52,6 +52,7 @@ async function handleLogin(e) {
 		} else if (res.status === 200) {
 			//  Save to local Storage
 			localStorage.setItem("session", data.accessToken);
+			localStorage.setItem("habitsID", data.habitsID);
 			localStorage.setItem("username", username);
 			// Login User & Change to Account Overview Page
 			window.location = `${frontendURL}/client/habitsNew.html`;

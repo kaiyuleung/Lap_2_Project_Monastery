@@ -39,15 +39,21 @@ async function removeHabit() {
 }
 
 async function loadHabitData() {
-	console.log("Loading Data");
+	// Get Dat From Local Storage
+	const token = localStorage.getItem("session");
+	const habitId = localStorage.getItem("specificHabitID");
+	console.log(habitId);
 	try {
 		// Get Data
 		try {
-			const res = await fetch(
-				`${backendURL}/habits/getOne/6356c19b8e90960b59e33798`
-			);
+			const res = await fetch(`${backendURL}/habits/user`, {
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
 			const data = await res.json();
-
+			console.log(res);
 			console.log(data);
 		} catch (error) {
 			console.log(error);
