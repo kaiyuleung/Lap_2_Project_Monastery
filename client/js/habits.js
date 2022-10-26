@@ -33,10 +33,29 @@ function logout() {
 
 async function AddNewHabit(e) {
 	e.preventDefault();
-	console.log("test");
+	// Get Local Storage Data
+	const token = localStorage.getItem("session");
+	// Set Data
+	const habitName = e.target.habitName.value;
+	const frequency = e.target.frequency.value;
+	const target = e.target.habitTarget.value;
 	// TODO Send API To Add New Habit
-
-	// TODO Refresh Page
+	try {
+		const res = await fetch(`${backendURL}/habits/user`, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify({ habitName, frequency, target }),
+		});
+		const data = await res.json();
+		// Refresh Page
+		location.reload();
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 async function loadUserHabits() {
@@ -46,16 +65,15 @@ async function loadUserHabits() {
 	const habitsID = localStorage.getItem("habitsID");
 	// TODO Get User Habits on Load
 	try {
-		const res = await fetch(`http://localhost:3001/user/`, {
+		const res = await fetch(`${backendURL}/habits/user`, {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
 		});
 		const data = await res.json();
-		console.log(data);
 		// Loops Habits Data
-		data.forEach((habit) => {
+		data.habits.forEach((habit) => {
 			// Create element & add class
 			const habitDiv = document.createElement("div");
 			habitDiv.classList.add("habit-item");
@@ -77,8 +95,9 @@ async function loadUserHabits() {
 
 			//
 		});
-	} catch (error) {}
-	// TODO APPLY TO DOM
+	} catch (error) {
+		console.log();
+	}
 }
 
 loadUserHabits();
