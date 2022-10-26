@@ -147,10 +147,9 @@ async function leaderboard (req, res){
                 } else {
                     res.status(204)
                 }
-
                 break;
             case rankBy[1]:
-                
+
                 break;
             default:
                 throw new Error(`Ranking mode must be one of the following options: [${rankBy}]`)

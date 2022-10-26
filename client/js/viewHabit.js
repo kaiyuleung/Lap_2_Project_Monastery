@@ -93,3 +93,13 @@ async function loadHabitData() {
 }
 
 loadHabitData();
+
+
+
+
+const habitBar = document.querySelector('div.habit');
+habitBar.addEventListener('mouseover', magic);
+
+function magic() {
+	document.documentElement.style.setProperty('--percentage', "100%");
+}

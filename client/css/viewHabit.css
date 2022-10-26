@@ -3,6 +3,7 @@
 	--dark-color: #001220;
 	--peach-color: #e56a62;
 	--red-color: #c62368;
+	--percentage: 55%;
 }
 
 /* General */
@@ -85,7 +86,7 @@ label {
 	right: 0;
 	bottom: 0;
 	top: 0;
-	left: 55%;
+	left: var(--percentage);
 	background-color: white;
 	border-top-right-radius: 50px;
 	border-bottom-right-radius: 50px;
