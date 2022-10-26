@@ -1,4 +1,5 @@
 const Model = require('../models/model');
+const schedule = require('node-schedule');
 
 async function getUser (req, res) {
     try{
@@ -7,6 +8,30 @@ async function getUser (req, res) {
     }
     catch(error){
         res.status(500).json({message: error.message})
+    }
+}
+
+async function streakChecker (req, res) {
+    try{
+        const userData = await Model.find({});
+        for ( let i = 0; i < userData.length; i ++) {
+            for( let j = 0; j < userData[i].habits.length; j ++) {
+                if(userData[i].habits[j].current >= userData[i].habits[j].target) {
+                    userData[i].habits[j].streak += 1;
+                    userData[i].habits[j].current = 0;
+                } else {
+                    userData[i].habits[j].streak = 0;
+                    userData[i].habits[j].current = 0;
+
+                }
+                
+            }
+        }
+        await userData.forEach(data => data.save());
+        res.status(200).json(userData);
+    }
+    catch(error){
+        res.status(404).json({message: error.message})
     }
 }
 
@@ -51,6 +76,7 @@ async function updateHabit (req, res) {
         const userData = await Model.findOne({username: req.user.name});
         const habitData = userData.habits.filter(h => h._id == req.params.id);
         if(!habitData.length){ throw new Error("No matched habit.") }
+        habitData[0].current += 1;
 
         switch(req.body.mode){
             case "a":
@@ -74,6 +100,32 @@ async function updateHabit (req, res) {
         // await Model.updateOne({_id: req.params.id}, userData)
         await userData.save();
 
+        //todo
+        // check if current has reached target:
+    if(habitData[0].current  > habitData[0].target) {
+        // habitData[0].streak += 1;
+        // habitData[0].completed = true;
+        habitData[0].current = 0;
+        console.log(habitData)
+    }
+        //todo
+
+    await Model.updateOne({_id: req.params.id}, userData)
+    await userData.save();
+        // switch(req.body.mode){
+        //     case "a":
+        //         habitData[0].completed = true;
+        //         break;
+        //     case "b":
+        //         habitData[0].current += 1;
+        //         break;
+        //     case "c":
+        //         habitData[0].streak = 0;
+        //         break;
+        //     default:
+        //         throw new Error("Not a valid update mode.");
+    
+    
 
         // let data = await Model.find({username: req.user.name});
         // let newData = data[0].habits.filter(h => {
@@ -139,5 +191,64 @@ async function leaderboard (req, res){
         //todo ranking for users with a tie for same place needs to be done in the frontend
     } catch (err) { res.status(400).json({ message: err.message }) }
 }
+
+
+    const rule = new schedule.RecurrenceRule();
+    rule.hour = 0;
+
+    rule.tz = 'Europe/Belfast';
+    
+    const job = schedule.scheduleJob(rule, async function() {
+        await fetch(
+            `http://localhost:3001/habits/data/all`,
+                {
+                    method: "GET",
+                    headers: {
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NjY3ODEyMTV9.mURhBMZXogpiq2MaVhBF25DksH2JW3KGfJKwXN_ZN_M`,
+                },
+            }
+        );
+    });
+    
+        
+    //     try {
+    //         const userData = await Model.findOne({username: req.user.name});
+    //         const habitData = userData.habits.filter(h => h._id == req.params.id);
+    //         console.log(habitData,"habit data-----------------------------------------")
+    //         if(!habitData.length){ throw new Error("No matched habit.") }
+    
+
+
+    //         // switch(req.body.mode){
+    //         //     case "a":
+    //         //         habitData[0].completed = true;
+    //         //         break;
+    //         //     case "b":
+    //         //         habitData[0].current += 1;
+    //         //         break;
+    //         //     case "c":
+    //         //         habitData[0].streak = 0;
+    //         //         break;
+    //         //     default:
+    //         //         throw new Error("Not a valid update mode.");
+    //         // }
+    //         await Model.updateOne({_id: req.params.id}, userData)
+    //         await userData.save();
+    
+    
+    //         // let data = await Model.find({username: req.user.name});
+    //         // let newData = data[0].habits.filter(h => {
+    //         //     return h._id == req.params.id
+    //         // })
+    //         // let userID = data[0].id
+    //         // newData[0].current += 1
+    //         // await Model.updateOne({_id: userID}, data[0])
+    //     res.json(habitData[0])
+    //     }
+    //     catch (error) {
+    //         res.status(400).json({ message: error.message })
+    //     }
+
+
 
 module.exports = { getUser, postHabit, getHabit, updateHabit, destroyHabit, leaderboard }
