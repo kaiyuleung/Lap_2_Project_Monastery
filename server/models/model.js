@@ -77,6 +77,11 @@ const dataSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    totalStreak: { 
+        required: true,
+        type: Number,
+        default: 0
+    },
     habits: [
         {
             habitName: {type: String, default: "Pray"},

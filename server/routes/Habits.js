@@ -3,21 +3,23 @@ const router = express.Router();
 const habitsController = require("../Controllers/Habits");
 
 //Get User's habits
-router.get("/", habitsController.getUser);
+router.get("/user", habitsController.getUser);
 
 //Get by Habit
-router.get("/:id", habitsController.getHabit);
+router.get("/user/:id", habitsController.getHabit);
 
 //Get all Habit
 router.get("/data/all", habitsController.streakChecker);
 
 //Post a habit
-router.post("/", habitsController.postHabit);
+router.post("/user", habitsController.postHabit);
 
 //Update by ID Method
-router.patch("/:id", habitsController.updateHabit);
+router.patch("/user/:id", habitsController.updateHabit);
 
 //Delete by ID Method
-router.delete("/:id", habitsController.destroyHabit);
+router.delete("/user/:id", habitsController.destroyHabit);
+
+router.get("/leaderboard", habitsController.leaderboard);
 
 module.exports = router;
