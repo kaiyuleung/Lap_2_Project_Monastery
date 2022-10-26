@@ -81,7 +81,7 @@ async function loadHabitData() {
 			streak.textContent = data.streak;
 			current.textContent = data.current;
 			goal.textContent = data.target;
-			complete.textContent = data.current === data.target ? "Yes" : "No";
+			complete.textContent = data.current >= data.target ? "Yes" : "No";
 		} catch (error) {
 			console.log(error);
 		}
@@ -89,7 +89,9 @@ async function loadHabitData() {
 		// Get DOM Elements
 
 		// Update DOM Elements to match data
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 loadHabitData();
