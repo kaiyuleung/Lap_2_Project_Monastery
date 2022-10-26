@@ -1,3 +1,11 @@
+:root {
+	--background: url("../img/background.svg");
+	--dark-color: #001220;
+	--peach-color: #e56a62;
+	--red-color: #c62368;
+}
+
+/* General */
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -12,4 +20,193 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: bottom center;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: "Kanit", sans-serif;
+	font-weight: 700;
+}
+
+h1 {
+	color: white;
+}
+
+a,
+p,
+button,
+input,
+label {
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+}
+
+/* Habits Heading */
+
+.habits-heading {
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	max-width: 1200px;
+	margin: 1rem auto;
+	padding: 1rem;
+	display: flex;
+}
+
+#logout-btn {
+	padding: 0.5rem 2rem;
+	font-weight: 700;
+	border-radius: 6px;
+	transition: 0.3s ease-in-out;
+}
+
+#logout-btn:hover {
+	background-color: var(--red-color);
+	color: white;
+	rotate: 6deg;
+}
+
+/* Container */
+
+.all-habits-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 90%;
+	height: 75vh;
+	max-width: 1200px;
+	margin: 1rem auto 0rem;
+	padding: 1rem;
+	overflow-y: scroll;
+}
+
+.habit-item {
+	margin: 0.75rem 0;
+	padding: 1.5rem 2rem;
+	width: 100%;
+	font-size: 28px;
+	font-weight: 700;
+	background-color: #fa7268;
+	opacity: 0.9;
+	background-image: linear-gradient(135deg, #f35e53 25%, transparent 25%),
+		linear-gradient(225deg, #f35e53 25%, transparent 25%),
+		linear-gradient(45deg, #f35e53 25%, transparent 25%),
+		linear-gradient(315deg, #f35e53 25%, #fa7268 25%);
+	background-position: 10px 0, 10px 0, 0 0, 0 0;
+	background-size: 20px 20px;
+	background-repeat: repeat;
+	color: var(--dark-color);
+	border-radius: 6px;
+	box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.562);
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+}
+
+.habit-item:hover {
+	background-color: #fa7268;
+	opacity: 0.8;
+	background-image: linear-gradient(135deg, #da3f67 25%, transparent 25%),
+		linear-gradient(225deg, #da3f67 25%, transparent 25%),
+		linear-gradient(45deg, #da3f67 25%, transparent 25%),
+		linear-gradient(315deg, #da3f67 25%, #fa7268 25%);
+	background-position: 10px 0, 10px 0, 0 0, 0 0;
+	background-size: 20px 20px;
+	background-repeat: repeat;
+	transform: scale(1.02);
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 6px;
+	background-image: linear-gradient(to top, #e56a62 0%, #c62368 100%);
+}
+
+/* New Habit Form */
+
+.new-habit-form {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	top: 20px;
+	right: 20px;
+	bottom: 20px;
+	left: 20px;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.9);
+	color: white;
+	box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.486);
+	border-radius: 24px;
+	display: none;
+}
+
+.new-habit-form input,
+.new-habit-form select {
+	width: 90%;
+	max-width: 500px;
+	padding: 0.5rem;
+	margin: 1rem 0;
+}
+
+.new-habit-form input:focus,
+.new-habit-form select:focus {
+	background-color: #e56a62;
+	font-weight: 700;
+}
+
+::placeholder {
+	color: rgba(0, 0, 0, 0.562);
+}
+
+.new-habit-form label {
+	font-size: 24px;
+}
+
+#add-habit {
+	font-weight: 700;
+	font-size: 20px;
+	transition: 0.3s ease-in-out;
+}
+
+#add-habit:hover {
+	background-color: var(--red-color);
+	color: white;
+}
+
+.cancel-habit {
+	color: white;
+	font-size: 60px;
+	position: absolute;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.cancel-habit:hover {
+	color: var(--peach-color);
+}
+
+/* New Habit Button */
+
+.new-habit-btn {
+	position: absolute;
+	right: 6%;
+	color: white;
+	margin: 0rem 1rem;
+	font-size: 70px;
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.new-habit-btn:hover {
+	color: var(--dark-color);
 }
