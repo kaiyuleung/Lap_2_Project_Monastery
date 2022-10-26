@@ -1,6 +1,6 @@
 // Global Variables
 const frontendURL = window.location.origin;
-const backendURL = "http://localhost:3001";
+const backendURL = "https://monasteri.herokuapp.com";
 // Buttons
 const IncrementCurrent = document.querySelector(".increment-habit-btn");
 const deleteHabit = document.querySelector(".remove-habit-btn");
