@@ -1,19 +1,5 @@
 const Model = require('../models/model');
 
-// async function post (req, res) {
-//     const data = new Model({
-//         username: req.body.username,
-//         habits: req.body.habits
-//     })
-//     try {
-//         const newHabit = await Model.create(data);
-//         res.status(201).json(newHabit);
-//     }
-//     catch (error) {
-//         res.status(400).json({message: error.message})
-//     }
-// }
-
 async function getUser (req, res) {
     try{
         const userData = await Model.findOne({username: req.user.name});

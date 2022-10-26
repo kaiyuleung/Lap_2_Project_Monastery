@@ -44,17 +44,17 @@ const addNewUser = async (req, res) => {
 const userLogin = async (req, res) => {
 	const { username, password } = req.body;
 	// Look for user
-	const user = await userModel.find({ username });
-	if (!user.length) {
+	const User = await userModel.find({ username });
+	if (!User.length) {
 		return res.status(400).json("Cannot find user");
 	}
 	try {
 		// Check Password
-		if (await bcrypt.compare(password, user[0].password)) {
+		if (await bcrypt.compare(password, User[0].password)) {
 			// JWT
 			const user = { name: username };
 			const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-			res.status(200).json({ accessToken: accessToken });
+			res.status(200).json({ accessToken: accessToken, habitsID: User[0].habitsID });
 		} else {
 			res.status(401).json("Not Allowed! Password does not match.");
 		}
