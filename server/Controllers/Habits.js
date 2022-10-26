@@ -62,9 +62,15 @@ async function updateHabit (req, res) {
             case "c":
                 habitData[0].streak = 0;
                 break;
+            case "d":
+                habitData[0].streak += 1;
+                break;
             default:
                 throw new Error("Not a valid update mode.");
         }
+
+        // Total Streak Count Updates
+        userData.totalStreak = userData.habits.map(h => h.streak).reduce( (r,v) => r + v );
         // await Model.updateOne({_id: req.params.id}, userData)
         await userData.save();
 
@@ -93,12 +99,22 @@ async function destroyHabit (req, res) {
         await userData.save();
         res.send(`Document with ${habitDataName} has been deleted..`)
 
-        // const data = await Model.findByIdAndDelete(req.params.id)
-        // res.send(`Document with ${data.name} has been deleted..`)
     }
     catch (error) {
         res.status(404).json({ message: error.message })
     }
 }
 
-module.exports = { getUser, postHabit, getHabit, updateHabit, destroyHabit }
+async function leaderboard (req, res){
+    try {
+        const data = await Model.find({"totalStreak": {$gte: 1} }).sort({"totalStreak": -1 }).limit(3);
+        res.json(data.map(u => { 
+            return {
+            username: u.username,
+            totalStreak: u.totalStreak
+            }
+        }))
+    } catch (err) { res.status(404).json({ message: err.message }) }
+}
+
+module.exports = { getUser, postHabit, getHabit, updateHabit, destroyHabit, leaderboard }
