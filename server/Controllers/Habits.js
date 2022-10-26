@@ -78,6 +78,29 @@ async function updateHabit (req, res) {
         if(!habitData.length){ throw new Error("No matched habit.") }
         habitData[0].current += 1;
 
+        switch(req.body.mode){
+            case "a":
+                habitData[0].completed = true;
+                break;
+            case "b":
+                habitData[0].current += 1;
+                break;
+            case "c":
+                habitData[0].streak = 0;
+                break;
+            case "d":
+                habitData[0].streak += 1;
+                break;
+            default:
+                throw new Error("Not a valid update mode.");
+        }
+
+        // Total Streak Count Updates
+        userData.totalStreak = userData.habits.map(h => h.streak).reduce( (r,v) => r + v );
+        // await Model.updateOne({_id: req.params.id}, userData)
+        await userData.save();
+
+        //todo
         // check if current has reached target:
     if(habitData[0].current  > habitData[0].target) {
         // habitData[0].streak += 1;
@@ -85,6 +108,7 @@ async function updateHabit (req, res) {
         habitData[0].current = 0;
         console.log(habitData)
     }
+        //todo
 
     await Model.updateOne({_id: req.params.id}, userData)
     await userData.save();
@@ -100,7 +124,7 @@ async function updateHabit (req, res) {
         //         break;
         //     default:
         //         throw new Error("Not a valid update mode.");
-     
+    
     
 
         // let data = await Model.find({username: req.user.name});
@@ -127,12 +151,45 @@ async function destroyHabit (req, res) {
         await userData.save();
         res.send(`Document with ${habitDataName} has been deleted..`)
 
-        // const data = await Model.findByIdAndDelete(req.params.id)
-        // res.send(`Document with ${data.name} has been deleted..`)
     }
     catch (error) {
         res.status(404).json({ message: error.message })
     }
+}
+
+async function leaderboard (req, res){
+    const rankBy = ["totalStreak", "totalTask"];
+    try {
+        switch (req.body.rankBy) {
+            case rankBy[0]:
+                res.json(await Model.find({"totalStreak": {$gte: 1} })
+                    .sort({"totalStreak": -1 })
+                    .limit(3)
+                    .map(u => { 
+                        return {
+                        username: u.username,
+                        totalStreak: u.totalStreak
+                        }
+                    }))
+                break;
+            case rankBy[1]:
+                res.status(200).json(await Model.find({"totalStreak": {$gte: 1} })
+                .sort({"totalStreak": -1 })
+                .limit(3)
+                .map(u => { 
+                    return {
+                    username: u.username,
+                    totalStreak: u.totalStreak
+                    }
+                }))
+                break;
+            default:
+                throw new Error(`Ranking mode must be one of the following options: [${rankBy}]`)
+
+        }
+        
+        //todo ranking for users with a tie for same place needs to be done in the frontend
+    } catch (err) { res.status(400).json({ message: err.message }) }
 }
 
 
@@ -144,15 +201,15 @@ async function destroyHabit (req, res) {
     const job = schedule.scheduleJob(rule, async function() {
         await fetch(
             `http://localhost:3001/habits/data/all`,
-            {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NjY3ODEyMTV9.mURhBMZXogpiq2MaVhBF25DksH2JW3KGfJKwXN_ZN_M`,
-              },
+                {
+                    method: "GET",
+                    headers: {
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NjY3ODEyMTV9.mURhBMZXogpiq2MaVhBF25DksH2JW3KGfJKwXN_ZN_M`,
+                },
             }
-          );
+        );
     });
-      
+    
         
     //     try {
     //         const userData = await Model.findOne({username: req.user.name});
@@ -194,4 +251,4 @@ async function destroyHabit (req, res) {
 
 
 
-module.exports = { getUser, postHabit, getHabit, updateHabit, destroyHabit, streakChecker }
+module.exports = { getUser, postHabit, getHabit, updateHabit, destroyHabit, leaderboard }
