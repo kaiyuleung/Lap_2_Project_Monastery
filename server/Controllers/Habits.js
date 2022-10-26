@@ -85,12 +85,11 @@ async function destroy (req, res) {
 
 
     const rule = new schedule.RecurrenceRule();
-    rule.hour = 17;
-    rule.minute = 30;
+    rule.hour = 0;
     rule.tz = 'Europe/Belfast';
     
     const job = schedule.scheduleJob(rule, function(){
-        console.log('A new day has begun in the UTC timezone!');
+        console.log('Starting tracker');
       });
 
 
