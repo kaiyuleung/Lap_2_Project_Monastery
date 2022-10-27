@@ -27,7 +27,6 @@
 	</head>
 	<body>
 		<!-- Logout Button -->
-		<!-- All Habits-->
 		<div class="habits-heading">
 			<h1>All Your Habits</h1>
 			<button id="logout-btn">Log out</button>
@@ -51,14 +50,15 @@
 			<label for="frequency">Frequency:</label>
 			<select name="frequency" id="frequency">
 				<option value="daily">Daily</option>
-				<option value="weekly">weekly</option>
+				<option value="weekly">Weekly</option>
 				<option value="monthly">Monthly</option>
 			</select>
 			<label for="habit-target">Target</label>
 			<input
-				type="text"
+				type="number"
 				id="habitTarget"
 				placeholder="Enter your a number here..."
+				min="1"
 				required
 			/>
 			<input type="submit" value="Create" id="add-habit" />
