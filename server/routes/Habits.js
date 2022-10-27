@@ -25,6 +25,12 @@ router.get('/leaderboard', habitsController.leaderboard)
 
 
 //Get all Habit
-router.get("/data/all", habitsController.streakChecker);
+router.get("/data/all", habitsController.dailyChecker);
+
+//Get all Habit
+router.get("/data/allWeeks", habitsController.weeklyChecker);
+
+//Get all Habit
+router.get("/data/allMonths", habitsController.monthlyChecker);
 
 module.exports = router;
