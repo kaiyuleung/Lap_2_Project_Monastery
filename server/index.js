@@ -36,3 +36,5 @@ const path = process.env.PORT || 3001;
 app.listen(path, () => {
 	console.log(`Server Started at ${path}`);
 });
+
+module.exports = app;
