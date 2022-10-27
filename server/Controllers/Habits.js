@@ -1,5 +1,5 @@
-const Model = require('../models/model');
-const schedule = require('node-schedule');
+const Model = require("../models/model");
+const schedule = require("node-schedule");
 
 async function getUser(req, res) {
 	try {
@@ -110,7 +110,6 @@ async function postHabit(req, res) {
 			throw new Error("Habit already exists.");
 		}
 		userData.habits.push(newHabit);
-		// await Model.updateOne({_id: userData._id}, userData)
 		await userData.save();
 		res.status(202).json(userData.habits.at(-1));
 	} catch (err) {
@@ -120,43 +119,29 @@ async function postHabit(req, res) {
 
 async function updateHabit(req, res) {
 	try {
-        //* Get loged-in user's data
+		//* Get logged-in user's data
 		const userData = await Model.findOne({ username: req.user.name });
-        //* Filter user's habits data by ID
+		//* Filter user's habits data by ID
 		const habitData = userData.habits.filter((h) => h._id == req.params.id);
-        //* Error handling for no matched habit
+		//* Error handling for no matched habit
 		if (!habitData.length) {
 			throw new Error("No matched habit.");
 		}
+
 		habitData[0].current += 1;
 
+		//* User Scores Updates
+		userData.totalStreak = userData.habits
+			.map((h) => h.streak)
+			.reduce((r, v) => r + v);
 
-
-		//todo
-		// check if current has reached target:
-		if (habitData[0].current > habitData[0].target) {
-			// habitData[0].streak += 1;
-			// habitData[0].completed = true;
-			// habitData[0].current = 0;
-			console.log(habitData);
-		}
-		//todo
-
-
-
-    //* Total Streak Count Updates
-    userData.totalStreak = userData.habits
-        .map((h) => h.streak)
-        .reduce((r, v) => r + v);
-
-    //* save updated user data
-    await userData.save();
-    //* send updated habit
-    res.status(200).json(habitData[0])
-    }
-    catch (error) {
-        res.status(400).json({ message: error.message })
-    }
+		//* save updated user data
+		await userData.save();
+		//* send updated habit
+		res.status(200).json(habitData[0]);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
 }
 
 async function destroyHabit(req, res) {
@@ -177,31 +162,29 @@ async function destroyHabit(req, res) {
 	}
 }
 
-async function leaderboard (req, res){
-    const rankBy = ["totalStreak", "totalTask"];
-    try {
-        switch (req.body.rankBy) {
-            case rankBy[0]:
-                let data = await Model
-                .find({"totalStreak": {$gte: 1} })
-                .sort({"totalStreak": -1 })
-                .limit(3);
+async function leaderboard(req, res) {
+	const rankBy = ["totalStreak", "totalTask"];
+	try {
+		switch (req.params.mode) {
+			case rankBy[0]:
+				let data = await Model.find({ totalStreak: { $gte: 1 } })
+					.sort({ totalStreak: -1 })
+					.limit(5);
 
                 if ( data.length > 0) {
                     res.status(200).json(
                         data.map(u => { 
                             return {
                             username: u.username,
-                            totalStreak: u.totalStreak
+                            score: u.totalStreak
                             }
                         }))
                 } else {
                     res.status(204)
                 }
-
                 break;
             case rankBy[1]:
-                
+
                 break;
             default:
                 throw new Error(`Ranking mode must be one of the following options: [${rankBy}]`)

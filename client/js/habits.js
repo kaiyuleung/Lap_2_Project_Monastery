@@ -1,10 +1,11 @@
 // Global Variables
-const frontendURL = window.location.origin;
+const frontendURL = "https://monasteri.netlify.app";
 const backendURL = "https://monasteri.herokuapp.com";
 // Buttons
 const logoutBtn = document.getElementById("logout-btn");
 const newHabitBtn = document.querySelector(".new-habit-btn");
 const cancelHabit = document.querySelector(".cancel-habit");
+const leaderboardBtn = document.getElementById("Leaderboard-btn");
 // Form
 const newHabitForm = document.querySelector(".new-habit-form");
 // Containers
@@ -23,12 +24,16 @@ cancelHabit.addEventListener(
 	"click",
 	() => (newHabitForm.style.display = "none")
 );
+leaderboardBtn.addEventListener(
+	"click",
+	() => (window.location = `${frontendURL}/leaderboard.html`)
+);
 
 function logout() {
 	// Clear local Storage
 	window.localStorage.clear();
 	// Logout User & Change to Login Page
-	window.location = `${frontendURL}/client/index.html`;
+	window.location = `${frontendURL}/index.html`;
 }
 
 async function AddNewHabit(e) {
@@ -62,8 +67,7 @@ async function loadUserHabits() {
 	// Get Local Storage Data
 	const username = localStorage.getItem("username");
 	const token = localStorage.getItem("session");
-	const habitsID = localStorage.getItem("habitsID");
-	// TODO Get User Habits on Load
+	// Get User Habits on Load
 	try {
 		const res = await fetch(`${backendURL}/habits/user`, {
 			method: "GET",
@@ -107,5 +111,5 @@ function viewHabit(e) {
 	// Save to local Storage
 	localStorage.setItem("specificHabitID", specificHabitId);
 	// Open View Habit Page
-	window.location = `${frontendURL}/client/viewHabit.html`;
+	window.location = `${frontendURL}/viewHabit.html`;
 }

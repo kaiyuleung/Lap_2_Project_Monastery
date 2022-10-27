@@ -1,0 +1,108 @@
+:root {
+	--background: url("../img/background.svg");
+	--dark-color: #001220;
+	--peach-color: #e56a62;
+	--red-color: #c62368;
+}
+
+/* General */
+
+body {
+	height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	background: var(--background);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom center;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: "Kanit", sans-serif;
+	font-weight: 700;
+}
+
+a,
+p,
+button,
+input,
+label {
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+}
+
+/* Leaderboard heading */
+
+.board-heading {
+	display: flex;
+	align-items: center;
+	margin: 1rem auto;
+}
+
+h1 {
+	margin: 2rem auto 0 1rem;
+}
+
+#go-back-btn,
+#toggle {
+	padding: 0.5rem 2rem;
+	font-weight: 700;
+	border-radius: 6px;
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+#go-back-btn:hover,
+#toggle:hover {
+	background-color: var(--red-color);
+	color: white;
+	rotate: 6deg;
+	margin: 0 0.5rem;
+}
+
+/* Leaderboard */
+
+h1 {
+	color: white;
+}
+
+.board-container {
+	width: 90%;
+	height: 90vh;
+	max-width: 1200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+/* Scores Container */
+
+.default {
+	margin: 1rem;
+	padding: 1rem 4rem;
+	border-radius: 8px;
+	font-weight: 700;
+	background-color: #eb5967;
+	font-size: 24px;
+}
+
+#scores-container {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.score-item {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.username,
+.score {
+	background-color: var(--peach-color);
+	margin: 1rem;
+	padding: 1rem 4rem;
+	border-radius: 8px;
+	font-size: 18px;
+}

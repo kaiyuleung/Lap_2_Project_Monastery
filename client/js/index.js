@@ -1,7 +1,6 @@
 // Global Variables
-const frontendURL = window.location.origin;
+const frontendURL = "https://monasteri.netlify.app";
 const backendURL = "https://monasteri.herokuapp.com";
-
 // Forms
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
@@ -55,7 +54,7 @@ async function handleLogin(e) {
 			localStorage.setItem("habitsID", data.habitsID);
 			localStorage.setItem("username", username);
 			// Login User & Change to Account Overview Page
-			window.location = `${frontendURL}/client/habitsNew.html`;
+			window.location = `${frontendURL}/habits.html`;
 		}
 	} catch (error) {
 		console.log(error.message);

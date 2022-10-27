@@ -33,33 +33,38 @@
 			<button id="logout-btn">Log out</button>
 		</div>
 		<div class="all-habits-container">
-			<!-- <div class="habit-item">Pray</div>
-			<div class="habit-item">Meditate</div>
-			<div class="habit-item">Exercise</div>
-			<div class="habit-item">Drink Water</div>
-			<div class="habit-item">Sleep</div>
-			<div class="habit-item">Eat Veggies</div> -->
+			<!-- Example: <div class="habit-item">Pray</div>-->
 		</div>
 		<!-- Add New Habit Form -->
 		<form class="new-habit-form">
 			<i class="fa-regular fa-circle-xmark cancel-habit"></i>
 			<label for="habit-name">Habit Name</label>
-			<input type="text" id="habitName" placeholder="Enter habit here..." />
+			<input
+				type="text"
+				id="habitName"
+				placeholder="Enter habit here..."
+				required
+			/>
 			<label for="frequency">Frequency:</label>
 			<select name="frequency" id="frequency">
 				<option value="daily">Daily</option>
 				<option value="weekly">weekly</option>
 				<option value="monthly">Monthly</option>
 			</select>
-			<!-- TODO Drop down-->
 			<label for="habit-target">Target</label>
 			<input
 				type="text"
 				id="habitTarget"
-				placeholder="Enter your target here..."
+				placeholder="Enter your a number here..."
+				required
 			/>
 			<input type="submit" value="Create" id="add-habit" />
 		</form>
-		<i class="fa-solid fa-circle-plus new-habit-btn"></i>
+		<div class="bottom-container">
+			<!-- Add new Habit Button -->
+			<button id="Leaderboard-btn">Leaderboards</button>
+			<!-- Add new Habit Button -->
+			<i class="fa-solid fa-circle-plus new-habit-btn"></i>
+		</div>
 	</body>
 </html>
