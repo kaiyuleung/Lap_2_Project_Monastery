@@ -51,6 +51,28 @@ beforeAll(async () => {
     });
   });
 
+  describe("GET /habits/data/all ", () => {
+    it("check the daily streak function", async () => {
+      const res = await request(app).get("/habits/data/all").set('Authorization', token);
+      expect(res.statusCode).toBe(200);
+    });
+  });
+
+  describe("GET /habits/data/allWeeks ", () => {
+    it("check the weekly streak function", async () => {
+      const res = await request(app).get("/habits/data/allWeeks").set('Authorization', token);
+      expect(res.statusCode).toBe(200);
+    });
+  });
+
+  describe("GET /habits/data/allMonths ", () => {
+    it("check the monthly streak function", async () => {
+      const res = await request(app).get("/habits/data/allMonths").set('Authorization', token);
+      expect(res.statusCode).toBe(200);
+    });
+  });
+
+
 //   describe("POST /users", () => {
 //     it("should create a user account", async () => {
 //       const res = await request(app).post("/users/").send({
@@ -62,19 +84,30 @@ beforeAll(async () => {
 //     });
 //   })
 
-describe("GET a users habits  ", () => {
-  it("should return a users habits", async () => {
-    const res = await request(app).get("/habits/user/6358f1f7be38c74d42967309").set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicyIsImlhdCI6MTY2Njg3Njg0OH0.EDDOjOvEcw1yKxH73K2PcES3JiU5-xs5HeDx1w9jtKs`);
-    expect(res.statusCode).toBe(200);
-    // expect(res.body.length).toBeGreaterThan(0);
-  });
-});
+  describe("POST /users/login", () => {
+    it("login in user", async () => {
+      const res = await request(app).post("/users/login").send({
+        username: "peterdgfdg",
+        password: "12345678dfg",
+      });
+      expect(res.statusCode).toBe(200);
+    //   expect(res.body.name).toBe("Product 2");
+    });
+  })
 
-describe("DELETE /user/:id", () => {
-  it("should delete a user", async () => {
-    const res = await request(app).delete(
-      "/habits/user/63591ef9fc8feff15e431cac"
-    ).set('Authorization', token);;
-    expect(res.statusCode).toBe(201);
-  });
-});
+// describe("GET a users habits  ", () => {
+//   it("should return a users habits", async () => {
+//     const res = await request(app).get("/habits/user/6358f1f7be38c74d42967309").set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicyIsImlhdCI6MTY2Njg3Njg0OH0.EDDOjOvEcw1yKxH73K2PcES3JiU5-xs5HeDx1w9jtKs`);
+//     expect(res.statusCode).toBe(200);
+//     // expect(res.body.length).toBeGreaterThan(0);
+//   });
+// });
+
+// describe("DELETE /user/:id", () => {
+//   it("should delete a user", async () => {
+//     const res = await request(app).delete(
+//       "/habits/user/63591ef9fc8feff15e431cac"
+//     ).set('Authorization', token);;
+//     expect(res.statusCode).toBe(201);
+//   });
+// });
