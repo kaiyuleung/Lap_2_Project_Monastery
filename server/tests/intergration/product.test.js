@@ -61,3 +61,20 @@ beforeAll(async () => {
 //     //   expect(res.body.name).toBe("Product 2");
 //     });
 //   })
+
+describe("GET a users habits  ", () => {
+  it("should return a users habits", async () => {
+    const res = await request(app).get("/habits/user/6358f1f7be38c74d42967309").set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicyIsImlhdCI6MTY2Njg3Njg0OH0.EDDOjOvEcw1yKxH73K2PcES3JiU5-xs5HeDx1w9jtKs`);
+    expect(res.statusCode).toBe(200);
+    // expect(res.body.length).toBeGreaterThan(0);
+  });
+});
+
+describe("DELETE /user/:id", () => {
+  it("should delete a user", async () => {
+    const res = await request(app).delete(
+      "/habits/user/63591ef9fc8feff15e431cac"
+    ).set('Authorization', token);;
+    expect(res.statusCode).toBe(201);
+  });
+});
