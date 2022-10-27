@@ -118,5 +118,3 @@ function showError(message) {
 	// Show
 	incorrectContainer.style.display = "block";
 }
-
-module.exports = { handleLogin };
