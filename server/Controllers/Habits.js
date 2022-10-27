@@ -10,18 +10,69 @@ async function getUser(req, res) {
 	}
 }
 
-async function streakChecker(req, res) {
+async function dailyChecker(req, res) {
 	try {
+        console.log("daily checker has ran")
 		const userData = await Model.find({});
 		for (let i = 0; i < userData.length; i++) {
 			for (let j = 0; j < userData[i].habits.length; j++) {
-				if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+                if(userData[i].habits.frequency = "Daily"){
+                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
 					userData[i].habits[j].streak += 1;
 					userData[i].habits[j].current = 0;
-				} else {
+				    } else {
 					userData[i].habits[j].streak = 0;
 					userData[i].habits[j].current = 0;
 				}
+                } 
+			}
+		}
+		await userData.forEach((data) => data.save());
+		res.status(200).json(userData);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+}
+
+async function weeklyChecker(req, res) {
+	try {
+        console.log("weekly checker has ran")
+		const userData = await Model.find({});
+		for (let i = 0; i < userData.length; i++) {
+			for (let j = 0; j < userData[i].habits.length; j++) {
+                if(userData[i].habits.frequency = "Weekly"){
+                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+					userData[i].habits[j].streak += 1;
+					userData[i].habits[j].current = 0;
+				    } else {
+					userData[i].habits[j].streak = 0;
+					userData[i].habits[j].current = 0;
+				}
+                } 
+			}
+		}
+		await userData.forEach((data) => data.save());
+		res.status(200).json(userData);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+}
+
+async function monthlyChecker(req, res) {
+	try {
+        console.log("monthly checker has ran")
+		const userData = await Model.find({});
+		for (let i = 0; i < userData.length; i++) {
+			for (let j = 0; j < userData[i].habits.length; j++) {
+                if(userData[i].habits.frequency = "Monthly"){
+                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+					userData[i].habits[j].streak += 1;
+					userData[i].habits[j].current = 0;
+				    } else {
+					userData[i].habits[j].streak = 0;
+					userData[i].habits[j].current = 0;
+				}
+                } 
 			}
 		}
 		await userData.forEach((data) => data.save());
@@ -143,11 +194,10 @@ async function leaderboard(req, res) {
     } catch (err) { res.status(400).json({ message: err.message }) }
 }
 
+// ########################################################################
 const rule = new schedule.RecurrenceRule();
 rule.hour = 0;
-
 rule.tz = "Europe/Belfast";
-
 const job = schedule.scheduleJob(rule, async function () {
 	await fetch(`http://localhost:3001/habits/data/all`, {
 		method: "GET",
@@ -157,6 +207,70 @@ const job = schedule.scheduleJob(rule, async function () {
 	});
 });
 
+const rule2 = new schedule.RecurrenceRule();
+rule2.dayOfWeek = 0;
+rule2.hour = 0;
+rule2.minute = 0;
+rule2.tz = "Europe/Belfast";
+const weeklyJob = schedule.scheduleJob(rule2, async function () {
+	await fetch(`http://localhost:3001/habits/data/allWeeks`, {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NjY3ODEyMTV9.mURhBMZXogpiq2MaVhBF25DksH2JW3KGfJKwXN_ZN_M`,
+		},
+	});
+});
+
+const rule3 = new schedule.RecurrenceRule();
+rule3.month = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+rule3.date = 0;
+rule3.hour = 0;
+rule3.minute = 0;
+rule3.tz = "Europe/Belfast";
+const monthlyJob = schedule.scheduleJob(rule3, async function () {
+	await fetch(`http://localhost:3001/habits/data/allMonths`, {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NjY3ODEyMTV9.mURhBMZXogpiq2MaVhBF25DksH2JW3KGfJKwXN_ZN_M`,
+		},
+	});
+});
+
+//     try {
+//         const userData = await Model.findOne({username: req.user.name});
+//         const habitData = userData.habits.filter(h => h._id == req.params.id);
+//         console.log(habitData,"habit data-----------------------------------------")
+//         if(!habitData.length){ throw new Error("No matched habit.") }
+
+//         // switch(req.body.mode){
+//         //     case "a":
+//         //         habitData[0].completed = true;
+//         //         break;
+//         //     case "b":
+//         //         habitData[0].current += 1;
+//         //         break;
+//         //     case "c":
+//         //         habitData[0].streak = 0;
+//         //         break;
+//         //     default:
+//         //         throw new Error("Not a valid update mode.");
+//         // }
+//         await Model.updateOne({_id: req.params.id}, userData)
+//         await userData.save();
+
+//         // let data = await Model.find({username: req.user.name});
+//         // let newData = data[0].habits.filter(h => {
+//         //     return h._id == req.params.id
+//         // })
+//         // let userID = data[0].id
+//         // newData[0].current += 1
+//         // await Model.updateOne({_id: userID}, data[0])
+//     res.json(habitData[0])
+//     }
+//     catch (error) {
+//         res.status(400).json({ message: error.message })
+//     }
+
 module.exports = {
 	getUser,
 	postHabit,
@@ -164,5 +278,7 @@ module.exports = {
 	updateHabit,
 	destroyHabit,
 	leaderboard,
-	streakChecker,
+	dailyChecker,
+    weeklyChecker,
+    monthlyChecker
 };
