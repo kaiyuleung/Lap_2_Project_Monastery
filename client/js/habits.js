@@ -10,6 +10,8 @@ const leaderboardBtn = document.getElementById("Leaderboard-btn");
 const newHabitForm = document.querySelector(".new-habit-form");
 // Containers
 const allHabitsContainer = document.querySelector(".all-habits-container");
+const usernamePara = document.getElementById("username-here");
+// Other
 
 // Event Listeners
 // form
@@ -96,8 +98,10 @@ async function loadUserHabits() {
 			habitDiv.addEventListener("click", viewHabit);
 			// Append Element
 			allHabitsContainer.append(habitDiv);
-
-			//
+			// Set Username to DOM
+			const name =
+				data.username.charAt(0).toUpperCase() + data.username.slice(1);
+			usernamePara.textContent = `Hi ${name}!`;
 		});
 	} catch (error) {
 		console.log();

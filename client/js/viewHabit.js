@@ -83,7 +83,9 @@ async function loadHabitData() {
 		const updatedName = uppercaseWords.join(" ");
 		// Update Stats Elements
 		habitName.textContent = updatedName;
-		frequency.textContent = data.frequency;
+		const updatedFreq =
+			data.frequency.charAt(0).toUpperCase() + data.frequency.slice(1);
+		frequency.textContent = updatedFreq;
 		streak.textContent = data.streak;
 		current.textContent = data.current;
 		goal.textContent = data.target;
