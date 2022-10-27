@@ -16,7 +16,7 @@ beforeEach(async () => {
 
   describe("GET habits/user", () => {
     it("should return all users", async () => {
-      const res = await request(app).get("/");
+      const res = await request(app).get("/habits/user");
       expect(res.statusCode).toBe(200);
       expect(res.body.length).toBeGreaterThan(0);
     });
