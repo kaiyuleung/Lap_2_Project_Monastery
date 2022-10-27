@@ -20,7 +20,7 @@ async function dailyChecker(req, res) {
                     if (userData[i].habits[j].current >= userData[i].habits[j].target) {
 					userData[i].habits[j].streak += 1;
 					userData[i].habits[j].current = 0;
-				    } else {
+					} else {
 					userData[i].habits[j].streak = 0;
 					userData[i].habits[j].current = 0;
 				}
@@ -44,7 +44,7 @@ async function weeklyChecker(req, res) {
                     if (userData[i].habits[j].current >= userData[i].habits[j].target) {
 					userData[i].habits[j].streak += 1;
 					userData[i].habits[j].current = 0;
-				    } else {
+					} else {
 					userData[i].habits[j].streak = 0;
 					userData[i].habits[j].current = 0;
 				}
@@ -68,7 +68,7 @@ async function monthlyChecker(req, res) {
                     if (userData[i].habits[j].current >= userData[i].habits[j].target) {
 					userData[i].habits[j].streak += 1;
 					userData[i].habits[j].current = 0;
-				    } else {
+					} else {
 					userData[i].habits[j].streak = 0;
 					userData[i].habits[j].current = 0;
 				}
@@ -235,41 +235,6 @@ const monthlyJob = schedule.scheduleJob(rule3, async function () {
 		},
 	});
 });
-
-//     try {
-//         const userData = await Model.findOne({username: req.user.name});
-//         const habitData = userData.habits.filter(h => h._id == req.params.id);
-//         console.log(habitData,"habit data-----------------------------------------")
-//         if(!habitData.length){ throw new Error("No matched habit.") }
-
-//         // switch(req.body.mode){
-//         //     case "a":
-//         //         habitData[0].completed = true;
-//         //         break;
-//         //     case "b":
-//         //         habitData[0].current += 1;
-//         //         break;
-//         //     case "c":
-//         //         habitData[0].streak = 0;
-//         //         break;
-//         //     default:
-//         //         throw new Error("Not a valid update mode.");
-//         // }
-//         await Model.updateOne({_id: req.params.id}, userData)
-//         await userData.save();
-
-//         // let data = await Model.find({username: req.user.name});
-//         // let newData = data[0].habits.filter(h => {
-//         //     return h._id == req.params.id
-//         // })
-//         // let userID = data[0].id
-//         // newData[0].current += 1
-//         // await Model.updateOne({_id: userID}, data[0])
-//     res.json(habitData[0])
-//     }
-//     catch (error) {
-//         res.status(400).json({ message: error.message })
-//     }
 
 module.exports = {
 	getUser,
