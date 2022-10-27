@@ -4,12 +4,15 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest --coverage --watchAll"
+		"test": "jest --coverage --watchAll",
+		"cy:open": "cypress open",
+		"cy:run": "cypress run"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
+		"cypress": "^10.11.0",
 		"jest": "^29.2.2",
 		"jest-environment-jsdom": "^29.2.2",
 		"jsdom": "^20.0.1"
