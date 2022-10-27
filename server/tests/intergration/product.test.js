@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
 const app = require("../../index");
-const jwt = require("jsonwebtoken");
-
 
 require("dotenv").config();
 
@@ -38,16 +36,10 @@ beforeAll(async () => {
 
   describe("GET / ", () => {
     it("should return all users", async () => {
-<<<<<<< HEAD
-      const res = await request(app).get("/habits/user");
-=======
       const res = await request(app).get("/").set('Authorization', token);
->>>>>>> e470424bfd355ef286a6e309d55fdf3ccb7d7cf3
       expect(res.statusCode).toBe(200);
     });
   });
-<<<<<<< HEAD
-=======
 
   describe("GET /habits ", () => {
     it("should return all users", async () => {
@@ -67,4 +59,3 @@ beforeAll(async () => {
 //     //   expect(res.body.name).toBe("Product 2");
 //     });
 //   })
->>>>>>> e470424bfd355ef286a6e309d55fdf3ccb7d7cf3
