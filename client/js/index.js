@@ -54,7 +54,7 @@ async function handleLogin(e) {
 			localStorage.setItem("habitsID", data.habitsID);
 			localStorage.setItem("username", username);
 			// Login User & Change to Account Overview Page
-			window.location = `${frontendURL}/client/habits.html`;
+			window.location = `${frontendURL}/habits.html`;
 		}
 	} catch (error) {
 		console.log(error.message);

@@ -26,14 +26,14 @@ cancelHabit.addEventListener(
 );
 leaderboardBtn.addEventListener(
 	"click",
-	() => (window.location = `${frontendURL}/client/leaderboard.html`)
+	() => (window.location = `${frontendURL}/leaderboard.html`)
 );
 
 function logout() {
 	// Clear local Storage
 	window.localStorage.clear();
 	// Logout User & Change to Login Page
-	window.location = `${frontendURL}/client/index.html`;
+	window.location = `${frontendURL}/index.html`;
 }
 
 async function AddNewHabit(e) {
@@ -111,5 +111,5 @@ function viewHabit(e) {
 	// Save to local Storage
 	localStorage.setItem("specificHabitID", specificHabitId);
 	// Open View Habit Page
-	window.location = `${frontendURL}/client/viewHabit.html`;
+	window.location = `${frontendURL}/viewHabit.html`;
 }

@@ -13,7 +13,7 @@ const scoreType = document.querySelector(".score-type");
 toggleBtn.addEventListener("click", toggleLeaderboards);
 goBackBtn.addEventListener(
 	"click",
-	() => (window.location = `${frontendURL}/client/habits.html`)
+	() => (window.location = `${frontendURL}/habits.html`)
 );
 
 // Functions

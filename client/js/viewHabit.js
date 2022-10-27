@@ -10,7 +10,7 @@ IncrementCurrent.addEventListener("click", incrementCurrent);
 deleteHabit.addEventListener("click", removeHabit);
 backBtn.addEventListener(
 	"click",
-	() => (window.location = `${frontendURL}/client/habits.html`)
+	() => (window.location = `${frontendURL}/habits.html`)
 );
 
 // Functions
@@ -47,7 +47,7 @@ async function removeHabit() {
 			},
 		});
 		// Go back to account Overview Page
-		window.location = `${frontendURL}/client/habits.html`;
+		window.location = `${frontendURL}/habits.html`;
 	} catch (error) {
 		console.log(error);
 	}
