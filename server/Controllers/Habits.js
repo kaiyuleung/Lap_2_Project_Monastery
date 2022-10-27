@@ -10,77 +10,7 @@ async function getUser(req, res) {
 	}
 }
 
-async function dailyChecker(req, res) {
-	try {
-        console.log("daily checker has ran")
-		const userData = await Model.find({});
-		for (let i = 0; i < userData.length; i++) {
-			for (let j = 0; j < userData[i].habits.length; j++) {
-                if(userData[i].habits.frequency = "Daily"){
-                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
-					userData[i].habits[j].streak += 1;
-					userData[i].habits[j].current = 0;
-					} else {
-					userData[i].habits[j].streak = 0;
-					userData[i].habits[j].current = 0;
-				}
-                } 
-			}
-		}
-		await userData.forEach((data) => data.save());
-		res.status(200).json(userData);
-	} catch (error) {
-		res.status(404).json({ message: error.message });
-	}
-}
 
-async function weeklyChecker(req, res) {
-	try {
-        console.log("weekly checker has ran")
-		const userData = await Model.find({});
-		for (let i = 0; i < userData.length; i++) {
-			for (let j = 0; j < userData[i].habits.length; j++) {
-                if(userData[i].habits.frequency = "Weekly"){
-                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
-					userData[i].habits[j].streak += 1;
-					userData[i].habits[j].current = 0;
-					} else {
-					userData[i].habits[j].streak = 0;
-					userData[i].habits[j].current = 0;
-				}
-                } 
-			}
-		}
-		await userData.forEach((data) => data.save());
-		res.status(200).json(userData);
-	} catch (error) {
-		res.status(404).json({ message: error.message });
-	}
-}
-
-async function monthlyChecker(req, res) {
-	try {
-        console.log("monthly checker has ran")
-		const userData = await Model.find({});
-		for (let i = 0; i < userData.length; i++) {
-			for (let j = 0; j < userData[i].habits.length; j++) {
-                if(userData[i].habits.frequency = "Monthly"){
-                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
-					userData[i].habits[j].streak += 1;
-					userData[i].habits[j].current = 0;
-					} else {
-					userData[i].habits[j].streak = 0;
-					userData[i].habits[j].current = 0;
-				}
-                } 
-			}
-		}
-		await userData.forEach((data) => data.save());
-		res.status(200).json(userData);
-	} catch (error) {
-		res.status(404).json({ message: error.message });
-	}
-}
 
 async function getHabit(req, res) {
 	try {
@@ -195,10 +125,84 @@ async function leaderboard(req, res) {
 }
 
 // ########################################################################
+async function dailyChecker(req, res) {
+	try {
+        console.log("daily checker has ran")
+		const userData = await Model.find({});
+		for (let i = 0; i < userData.length; i++) {
+			for (let j = 0; j < userData[i].habits.length; j++) {
+                if(userData[i].habits.frequency.toLowerCase() == "daily"){
+                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+					userData[i].habits[j].streak += 1;
+					userData[i].habits[j].current = 0;
+					} else {
+					userData[i].habits[j].streak = 0;
+					userData[i].habits[j].current = 0;
+				}
+                } 
+			}
+		}
+		await userData.forEach((data) => data.save());
+		res.status(200).json(userData);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+}
+
+async function weeklyChecker(req, res) {
+	try {
+        console.log("weekly checker has ran")
+		const userData = await Model.find({});
+		for (let i = 0; i < userData.length; i++) {
+			for (let j = 0; j < userData[i].habits.length; j++) {
+                if(userData[i].habits.frequency.toLowerCase() == "weekly"){
+                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+					userData[i].habits[j].streak += 1;
+					userData[i].habits[j].current = 0;
+					} else {
+					userData[i].habits[j].streak = 0;
+					userData[i].habits[j].current = 0;
+				}
+                } 
+			}
+		}
+		await userData.forEach((data) => data.save());
+		res.status(200).json(userData);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+}
+
+async function monthlyChecker(req, res) {
+	try {
+        console.log("monthly checker has ran")
+		const userData = await Model.find({});
+		for (let i = 0; i < userData.length; i++) {
+			for (let j = 0; j < userData[i].habits.length; j++) {
+                if(userData[i].habits.frequency.toLowerCase() == "monthly"){
+                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+					userData[i].habits[j].streak += 1;
+					userData[i].habits[j].current = 0;
+					} else {
+					userData[i].habits[j].streak = 0;
+					userData[i].habits[j].current = 0;
+				}
+                } 
+			}
+		}
+		await userData.forEach((data) => data.save());
+		res.status(200).json(userData);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+}
+
+
+
 const rule = new schedule.RecurrenceRule();
 rule.hour = 0;
 rule.tz = "Europe/Belfast";
-const job = schedule.scheduleJob(rule, async function () {
+schedule.scheduleJob(rule, async function () {
 	await fetch(`http://localhost:3001/habits/data/all`, {
 		method: "GET",
 		headers: {
@@ -212,7 +216,7 @@ rule2.dayOfWeek = 0;
 rule2.hour = 0;
 rule2.minute = 0;
 rule2.tz = "Europe/Belfast";
-const weeklyJob = schedule.scheduleJob(rule2, async function () {
+schedule.scheduleJob(rule2, async function () {
 	await fetch(`http://localhost:3001/habits/data/allWeeks`, {
 		method: "GET",
 		headers: {
@@ -227,7 +231,7 @@ rule3.date = 0;
 rule3.hour = 0;
 rule3.minute = 0;
 rule3.tz = "Europe/Belfast";
-const monthlyJob = schedule.scheduleJob(rule3, async function () {
+schedule.scheduleJob(rule3, async function () {
 	await fetch(`http://localhost:3001/habits/data/allMonths`, {
 		method: "GET",
 		headers: {
