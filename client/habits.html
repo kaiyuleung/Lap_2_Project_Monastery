@@ -4,6 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://kit.fontawesome.com/b7207ee847.js"
+			crossorigin="anonymous"
+		></script>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -18,22 +22,49 @@
 		/>
 		<link rel="stylesheet" href="./css/habits.css" />
 		<link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
-		<script src="./js/habits.js"></script>
+		<script defer src="./js/habits.js"></script>
 		<title>Habits Overview</title>
 	</head>
-
 	<body>
-		<iframe src="navbar.html" class="navbar" />
-		<div class="page-canvas-class" id="page-canvas-id">
-			<h1>Habits Overview</h1>
-
-			<div class="habit-details-class">
-				<!-- Account Details goes here -->
-			</div>
-
-			<div class="habit-edit-class">
-				<!-- Habit Tracker goes here -->
-			</div>
+		<!-- Logout Button -->
+		<!-- All Habits-->
+		<div class="habits-heading">
+			<h1>All Your Habits</h1>
+			<button id="logout-btn">Log out</button>
+		</div>
+		<div class="all-habits-container">
+			<!-- Example: <div class="habit-item">Pray</div>-->
+		</div>
+		<!-- Add New Habit Form -->
+		<form class="new-habit-form">
+			<i class="fa-regular fa-circle-xmark cancel-habit"></i>
+			<label for="habit-name">Habit Name</label>
+			<input
+				type="text"
+				id="habitName"
+				placeholder="Enter habit here..."
+				required
+			/>
+			<label for="frequency">Frequency:</label>
+			<select name="frequency" id="frequency">
+				<option value="daily">Daily</option>
+				<option value="weekly">weekly</option>
+				<option value="monthly">Monthly</option>
+			</select>
+			<label for="habit-target">Target</label>
+			<input
+				type="text"
+				id="habitTarget"
+				placeholder="Enter your a number here..."
+				required
+			/>
+			<input type="submit" value="Create" id="add-habit" />
+		</form>
+		<div class="bottom-container">
+			<!-- Add new Habit Button -->
+			<button id="Leaderboard-btn">Leaderboards</button>
+			<!-- Add new Habit Button -->
+			<i class="fa-solid fa-circle-plus new-habit-btn"></i>
 		</div>
 	</body>
 </html>

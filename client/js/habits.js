@@ -1,5 +1,5 @@
 // Global Variables
-const frontendURL = window.location.origin;
+const frontendURL = "https://monasteri.netlify.app";
 const backendURL = "https://monasteri.herokuapp.com";
 // Buttons
 const logoutBtn = document.getElementById("logout-btn");
@@ -67,7 +67,6 @@ async function loadUserHabits() {
 	// Get Local Storage Data
 	const username = localStorage.getItem("username");
 	const token = localStorage.getItem("session");
-	const habitsID = localStorage.getItem("habitsID");
 	// Get User Habits on Load
 	try {
 		const res = await fetch(`${backendURL}/habits/user`, {

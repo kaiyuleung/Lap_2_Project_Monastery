@@ -1,5 +1,5 @@
 // Global Variables
-const frontendURL = window.location.origin;
+const frontendURL = "https://monasteri.netlify.app";
 const backendURL = "https://monasteri.herokuapp.com";
 // Buttons
 const IncrementCurrent = document.querySelector(".increment-habit-btn");
@@ -10,7 +10,7 @@ IncrementCurrent.addEventListener("click", incrementCurrent);
 deleteHabit.addEventListener("click", removeHabit);
 backBtn.addEventListener(
 	"click",
-	() => (window.location = `${frontendURL}/client/habitsNew.html`)
+	() => (window.location = `${frontendURL}/client/habits.html`)
 );
 
 // Functions
@@ -18,7 +18,7 @@ async function incrementCurrent() {
 	// Get Dat From Local Storage
 	const token = localStorage.getItem("session");
 	const habitId = localStorage.getItem("specificHabitID");
-	// TODO ADD API Request to increment current counter
+	// ADD API Request to increment current counter
 	try {
 		const res = await fetch(`${backendURL}/habits/user/${habitId}`, {
 			method: "PATCH",
@@ -47,7 +47,7 @@ async function removeHabit() {
 			},
 		});
 		// Go back to account Overview Page
-		window.location = `${frontendURL}/client/habitsNew.html`;
+		window.location = `${frontendURL}/client/habits.html`;
 	} catch (error) {
 		console.log(error);
 	}
@@ -94,4 +94,3 @@ async function loadHabitData() {
 }
 
 loadHabitData();
-
