@@ -114,7 +114,6 @@ function switchContainer(e) {
 function showError(message) {
 	// Get
 	const messageBox = document.querySelector(".incorrect-message");
-
 	messageBox.textContent = message;
 	// Show
 	incorrectContainer.style.display = "block";

@@ -128,10 +128,12 @@ async function leaderboard(req, res) {
 async function dailyChecker(req, res) {
 	try {
         console.log("daily checker has ran")
+		
 		const userData = await Model.find({});
+		console.log(userData[0].habits[0].frequency);
 		for (let i = 0; i < userData.length; i++) {
 			for (let j = 0; j < userData[i].habits.length; j++) {
-                if(userData[i].habits.frequency.toLowerCase() == "daily"){
+                if(userData[i].habits[j].frequency.toLowerCase() == "daily"){
                     if (userData[i].habits[j].current >= userData[i].habits[j].target) {
 					userData[i].habits[j].streak += 1;
 					userData[i].habits[j].current = 0;
@@ -143,7 +145,7 @@ async function dailyChecker(req, res) {
 			}
 		}
 		await userData.forEach((data) => data.save());
-		res.status(200).json(userData);
+		res.status(200).json({message: "daily habits checked"});
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -155,7 +157,7 @@ async function weeklyChecker(req, res) {
 		const userData = await Model.find({});
 		for (let i = 0; i < userData.length; i++) {
 			for (let j = 0; j < userData[i].habits.length; j++) {
-                if(userData[i].habits.frequency.toLowerCase() == "weekly"){
+                if((userData[i].habits[j].frequency.toLowerCase() == "weekly")) {
                     if (userData[i].habits[j].current >= userData[i].habits[j].target) {
 					userData[i].habits[j].streak += 1;
 					userData[i].habits[j].current = 0;
@@ -179,7 +181,7 @@ async function monthlyChecker(req, res) {
 		const userData = await Model.find({});
 		for (let i = 0; i < userData.length; i++) {
 			for (let j = 0; j < userData[i].habits.length; j++) {
-                if(userData[i].habits.frequency.toLowerCase() == "monthly"){
+                if((userData[i].habits[j].frequency.toLowerCase() == "monthly")) {
                     if (userData[i].habits[j].current >= userData[i].habits[j].target) {
 					userData[i].habits[j].streak += 1;
 					userData[i].habits[j].current = 0;
