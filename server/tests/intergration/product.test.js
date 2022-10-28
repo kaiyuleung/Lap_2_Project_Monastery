@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
 const app = require("../../index");
-const jwt = require("jsonwebtoken");
-
 
 require("dotenv").config();
 
