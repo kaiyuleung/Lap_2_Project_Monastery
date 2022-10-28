@@ -10,8 +10,6 @@ async function getUser(req, res) {
 	}
 }
 
-
-
 async function getHabit(req, res) {
 	try {
 		const userData = await Model.findOne({ username: req.user.name });
@@ -93,6 +91,7 @@ async function destroyHabit(req, res) {
 }
 
 async function leaderboard(req, res) {
+	// type of score
 	const rankBy = ["totalStreak", "totalTask"];
 	try {
 		switch (req.params.mode) {
@@ -101,51 +100,55 @@ async function leaderboard(req, res) {
 					.sort({ totalStreak: -1 })
 					.limit(5);
 
-                if ( data.length > 0) {
-                    res.status(200).json(
-                        data.map(u => { 
-                            return {
-                            username: u.username,
-                            score: u.totalStreak
-                            }
-                        }))
-                } else {
-                    res.status(204)
-                }
-                break;
-            case rankBy[1]:
+				if (data.length > 0) {
+					res.status(200).json(
+						data.map((u) => {
+							return {
+								username: u.username,
+								score: u.totalStreak,
+							};
+						})
+					);
+				} else {
+					res.status(204);
+				}
+				break;
+			case rankBy[1]:
+				break;
+			default:
+				throw new Error(
+					`Ranking mode must be one of the following options: [${rankBy}]`
+				);
+		}
 
-                break;
-            default:
-                throw new Error(`Ranking mode must be one of the following options: [${rankBy}]`)
-        }
-        
-        //todo ranking for users with a tie for same place needs to be done in the frontend
-    } catch (err) { res.status(400).json({ message: err.message }) }
+		//todo ranking for users with a tie for same place needs to be done in the frontend
+	} catch (err) {
+		res.status(400).json({ message: err.message });
+	}
 }
 
 // ########################################################################
 async function dailyChecker(req, res) {
 	try {
-        console.log("daily checker has ran")
-		
+		console.log("daily checker has ran");
+
 		const userData = await Model.find({});
 		console.log(userData[0].habits[0].frequency);
 		for (let i = 0; i < userData.length; i++) {
 			for (let j = 0; j < userData[i].habits.length; j++) {
-                if(userData[i].habits[j].frequency.toLowerCase() == "daily"){
-                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
-					userData[i].habits[j].streak += 1;
-					userData[i].habits[j].current = 0;
+				if (userData[i].habits[j].frequency.toLowerCase() == "daily") {
+					if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+						userData[i].habits[j].streak += 1;
+						userData[i].habits[j].current = 0;
 					} else {
-					userData[i].habits[j].streak = 0;
-					userData[i].habits[j].current = 0;
+						userData[i].habits[j].streak = 0;
+						userData[i].habits[j].current = 0;
+					}
 				}
-                } 
 			}
 		}
 		await userData.forEach((data) => data.save());
-		res.status(200).json({message: "daily habits checked"});
+		res.status(200).json({ message: "daily habits checked" });
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -153,19 +156,19 @@ async function dailyChecker(req, res) {
 
 async function weeklyChecker(req, res) {
 	try {
-        console.log("weekly checker has ran")
+		console.log("weekly checker has ran");
 		const userData = await Model.find({});
 		for (let i = 0; i < userData.length; i++) {
 			for (let j = 0; j < userData[i].habits.length; j++) {
-                if((userData[i].habits[j].frequency.toLowerCase() == "weekly")) {
-                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
-					userData[i].habits[j].streak += 1;
-					userData[i].habits[j].current = 0;
+				if (userData[i].habits[j].frequency.toLowerCase() == "weekly") {
+					if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+						userData[i].habits[j].streak += 1;
+						userData[i].habits[j].current = 0;
 					} else {
-					userData[i].habits[j].streak = 0;
-					userData[i].habits[j].current = 0;
+						userData[i].habits[j].streak = 0;
+						userData[i].habits[j].current = 0;
+					}
 				}
-                } 
 			}
 		}
 		await userData.forEach((data) => data.save());
@@ -177,19 +180,19 @@ async function weeklyChecker(req, res) {
 
 async function monthlyChecker(req, res) {
 	try {
-        console.log("monthly checker has ran")
+		console.log("monthly checker has ran");
 		const userData = await Model.find({});
 		for (let i = 0; i < userData.length; i++) {
 			for (let j = 0; j < userData[i].habits.length; j++) {
-                if((userData[i].habits[j].frequency.toLowerCase() == "monthly")) {
-                    if (userData[i].habits[j].current >= userData[i].habits[j].target) {
-					userData[i].habits[j].streak += 1;
-					userData[i].habits[j].current = 0;
+				if (userData[i].habits[j].frequency.toLowerCase() == "monthly") {
+					if (userData[i].habits[j].current >= userData[i].habits[j].target) {
+						userData[i].habits[j].streak += 1;
+						userData[i].habits[j].current = 0;
 					} else {
-					userData[i].habits[j].streak = 0;
-					userData[i].habits[j].current = 0;
+						userData[i].habits[j].streak = 0;
+						userData[i].habits[j].current = 0;
+					}
 				}
-                } 
 			}
 		}
 		await userData.forEach((data) => data.save());
@@ -198,8 +201,6 @@ async function monthlyChecker(req, res) {
 		res.status(404).json({ message: error.message });
 	}
 }
-
-
 
 const rule = new schedule.RecurrenceRule();
 rule.hour = 0;
@@ -250,6 +251,6 @@ module.exports = {
 	destroyHabit,
 	leaderboard,
 	dailyChecker,
-    weeklyChecker,
-    monthlyChecker
+	weeklyChecker,
+	monthlyChecker,
 };
