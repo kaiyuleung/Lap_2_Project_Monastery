@@ -1,35 +1,40 @@
 # Lap_2_Project_Monastery
-*Kai, Dave, Ahmed, Oliver, and Peter*
----
-![Monastery Habit Tracking](./media/Monastery.png "Monastery Habit Tracking Logo")
----
+
+## _Kai, Dave, Ahmed, Oliver, and Peter_
+
+## ![Monastery Habit Tracking](./media/Monastery.png "Monastery Habit Tracking Logo")
+
 # Monastery Habit Tracking
 
 Monastery Habit Tracking is an habit tracking mobile app, using X. Y, and Z technologies.
 
 ## Project Brief
+
 #### Website should have the following functionality for users:
+
 - Users should be able to login
 - Users should be able to choose a habit they want to track (e.g water, exercise, 8 hours of sleep) and choose the frequency at which they want to track the habit
 - Users should be able to track a habit and mark it as complete for the day
 - Users should be able to see if they have completed a habit for the day and see their most recent completion streak
 
 #### Project should meet the following technical requirements:
+
 - Data should persisted in a database
 - Minimum 60% test coverage with an aim of 80%
 - Your codebase should primarily feature the technologies we have covered so far on the course
 
 ## Installation & Usage
+
 ### Installation
 
-* Clone or download the repo.
-* Open terminal and navigate to `monastery` folder.
-* Run `npm install` to install dependencies.
+- Clone or download the repo.
+- Open terminal and navigate to `monastery` folder.
+- Run `npm install` to install dependencies.
 
 ### Usage
 
-* Run `npm start` to launch server.
-* Run `npm test` to launch test suite.
+- Run `npm start` to launch server.
+- Run `npm test` to launch test suite.
 
 ## Changelog
 
@@ -49,16 +54,17 @@ Monastery Habit Tracking is an habit tracking mobile app, using X. Y, and Z tech
 
 ### Wins
 
-* Good Team Members
-* Fun app idea
+- Good Team Members
+- Fun app idea
 
 ### Challenges
 
-* Not using too many puns
+- Not using too many puns
 
 ---
 
 ### Links
+
 - https://github.com/kaiyuleung/Lap_2_Project_Monastery Repo
 - https://gist.github.com/getfutureproof-admin/8ebd3745bda46bd4df6f7b28fdae63fa - Full Brief
 - https://www.freecodecamp.org/news/build-a-restful-api-using-node-express-and-mongodb/ - MongoDB Tutorial
