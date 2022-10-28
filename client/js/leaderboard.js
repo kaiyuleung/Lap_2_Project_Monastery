@@ -26,9 +26,8 @@ async function loadScoreData() {
 			},
 		});
 		const data = await res.json();
-
+		console.log(data);
 		data.map((user) => {
-			console.log(user);
 			// Create Elements
 			const div = document.createElement("div");
 			const usernamePara = document.createElement("p");
